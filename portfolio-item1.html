@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft服务器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CloudDream云梦谷</h1><br>
+	<SCRIPT language=JavaScript>
+<!--
+
+var caution = false
+
+function setCookie(name, value, expires, path, domain, secure) {
+
+var curCookie = name + "=" + escape(value) +
+
+((expires) ? "; expires=" + expires.toGMTString() : "") +
+
+((path) ? "; path=" + path : "") +
+
+((domain) ? "; domain=" + domain : "") +
+
+((secure) ? "; secure" : "")
+
+if (!caution || (name + "=" + escape(value)).length <= 4000)
+
+document.cookie = curCookie
+
+else
+
+if (confirm("Cookie exceeds 4KB and will be cut!"))
+
+document.cookie = curCookie
+
+}
+
+function getCookie(name) {
+
+var prefix = name + "="
+
+var cookieStartIndex = document.cookie.indexOf(prefix)
+
+if (cookieStartIndex == -1)
+
+return null
+
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+
+if (cookieEndIndex == -1)
+
+cookieEndIndex = document.cookie.length
+
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+
+}
+
+function deleteCookie(name, path, domain) {
+
+if (getCookie(name)) {
+
+document.cookie = name + "=" +
+
+((path) ? "; path=" + path : "") +
+
+((domain) ? "; domain=" + domain : "") +
+
+"; expires=Thu, 01-Jan-70 00:00:01 GMT"
+
+}
+
+}
+
+function fixDate(date) {
+
+var base = new Date(0)
+
+var skew = base.getTime()
+
+if (skew > 0)
+
+date.setTime(date.getTime() - skew)
+
+}
+
+var now = new Date()
+
+fixDate(now)
+
+now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000)
+
+var visits = getCookie("counter")
+
+if (!visits)
+
+visits = 1
+
+else
+
+visits = parseInt(visits) + 1
+
+setCookie("counter", visits, now)
+
+document.write("欢迎光临！您是本页面第 " + visits + " 位访问者！")
+
+// -->
+</SCRIPT><br>
+        <a href="index.html" class="button">回到主菜单</a>
+    </header>
+    <main>
+        <section>
+            <h2>CloudDream云梦谷</h2>
+            <p>
+我的Minecraft服务器<br>
+插件生存多世界<br>
+<h3>目前添加的世界</h3>
+	1.冰船赛道：和其它玩家竞速，体验无尽的乐趣。<br>
+	2.心跳水立方：史上最难的心跳水立方，快来挑战吧！<br>
+	3.城市生存：巨大的废弃城市，击杀怪物可以获取丰厚战利品！<br>
+	4.原版生存：原版生存，体验原汁原味的Minecraft生存世界。<br>
+	5.跑酷：超长流程，难度中等，适合新手玩家。<br>
+	6.建筑地图：专为建筑爱好者添加的建筑地图，不刷怪，地形非常壮观，由po_er制作。<br>
+	7.PVP地图：送击退棒，非常朴素，以后会改。<br>
+	8.单方块生存：经典的随机单方块<br>
+	9.空岛生存：不限类型，插件提供的所有空岛类型任你挑选。<br>
+<h3>没人玩，快来帮帮我们！</h3>
+QQ群：697780476<br>
+官网：https://clouddream.pages.dev/<br>
+宣传片：https://www.bilibili.com/video/BV1ET421y7md/
+</p>
+            <img src="clouddream.png" alt="作品图片"width="696" height="432">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Enashpinal_YEE. 保留所有权利。</p>
+    </footer>
+</body>
+</html>

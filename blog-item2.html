@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【教程】百度网盘如何像磁盘一样挂载到本地</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="button">回到主菜单</a>
+        <h1>【教程】百度网盘如何像磁盘一样挂载到本地</h1><br>
+	<SCRIPT language=JavaScript>
+<!--
+
+var caution = false
+
+function setCookie(name, value, expires, path, domain, secure) {
+
+var curCookie = name + "=" + escape(value) +
+
+((expires) ? "; expires=" + expires.toGMTString() : "") +
+
+((path) ? "; path=" + path : "") +
+
+((domain) ? "; domain=" + domain : "") +
+
+((secure) ? "; secure" : "")
+
+if (!caution || (name + "=" + escape(value)).length <= 4000)
+
+document.cookie = curCookie
+
+else
+
+if (confirm("Cookie exceeds 4KB and will be cut!"))
+
+document.cookie = curCookie
+
+}
+
+function getCookie(name) {
+
+var prefix = name + "="
+
+var cookieStartIndex = document.cookie.indexOf(prefix)
+
+if (cookieStartIndex == -1)
+
+return null
+
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+
+if (cookieEndIndex == -1)
+
+cookieEndIndex = document.cookie.length
+
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+
+}
+
+function deleteCookie(name, path, domain) {
+
+if (getCookie(name)) {
+
+document.cookie = name + "=" +
+
+((path) ? "; path=" + path : "") +
+
+((domain) ? "; domain=" + domain : "") +
+
+"; expires=Thu, 01-Jan-70 00:00:01 GMT"
+
+}
+
+}
+
+function fixDate(date) {
+
+var base = new Date(0)
+
+var skew = base.getTime()
+
+if (skew > 0)
+
+date.setTime(date.getTime() - skew)
+
+}
+
+var now = new Date()
+
+fixDate(now)
+
+now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000)
+
+var visits = getCookie("counter")
+
+if (!visits)
+
+visits = 1
+
+else
+
+visits = parseInt(visits) + 1
+
+setCookie("counter", visits, now)
+
+document.write("欢迎光临！您是本页面第 " + visits + " 位访问者！")
+
+// -->
+</SCRIPT><br>
+    </header>
+    <main>
+        <section>
+            <h2>把你的百度网盘部署到本地</h2>
+            <h3>材料</h3><p>
+1.一个百度网盘账号<br>
+
+2.windows10系统<br>
+
+3.Alist和RaiDrive</p>
+
+<h3>所需文件下载（Alist 和 RaiDrive 安装包）</h3>
+
+<p>链接：https://pan.baidu.com/s/129HPJ1dk1pPNdGhbXuR42w?pwd=3h5i </p><br>
+<p>
+下载并解压所需文件，右键点击“alist-windows-4.0-amd64.exe”以管理员身份运行。<br><br>
+<img src="blog/b2/img (1).avif" alt="图片"><br><br>
+然后它会给你一个密码，复制它。<br><br>
+<img src="blog/b2/img (2).avif" alt="图片"><br><br>
+在浏览器上打开网页：127.0.0.1:5244
+粘贴刚才复制的密码
+然后点击“登录”。<br><br>
+<img src="blog/b2/img (3).avif" alt="图片"width="896" height="432"><br><br>
+点击左侧的“账号”，点击“添加”<br><br>
+<img src="blog/b2/img (4).avif" alt="图片"width="896" height="432"><br><br>
+<img src="blog/b2/img (5).avif" alt="图片"width="896" height="432"><br><br>
+刷新令牌需要在alist官方网站获取：https://alist.nn.ci/zh/guide/drivers/baidu.html<br>
+打开之后往下翻找到“点击这里来获取刷新令牌”<br>
+点进去登录你的百度网盘账号，复制刷新令牌。<br><br>
+<img src="blog/b2/img (6).avif" alt="图片"width="896" height="432"><br><br>
+填写刷新令牌，点击“保存”<br><br>
+<img src="blog/b2/img (7).avif" alt="图片"width="896" height="432"><br><br>
+完成后运行Raidrive安装包<br><br>
+<img src="blog/b2/img (8).avif" ><br><br>
+<img src="blog/b2/img (9).avif" alt="图片"><br><br>
+回到Alist管理界面，按照下面的流程操作：<br><br>
+<img src="blog/b2/img (10).avif" alt="图片"width="896" height="432"><br><br>
+打开RaiDrive，图中⑤填“127.0.0.1”，⑥填“5244”，⑦填“/dav”，⑧填“admin”，⑨填刚才记下的密码。 <br><br>
+<img src="blog/b2/img (11).avif" alt="图片"><br><br>
+ 完成后点击下面的“连接”，不出意外就成功了<br><br>
+<img src="blog/b2/img (12).avif" alt="图片"><br><br>
+<img src="blog/b2/img (13).avif" alt="图片"><br><br>
+你的百度网盘就成功挂载到本地了！<br><br>
+
+转载请注明原文出处！
+</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Enashpinal_YEE. 保留所有权利。</p>
+    </footer>
+</body>
+</html>
