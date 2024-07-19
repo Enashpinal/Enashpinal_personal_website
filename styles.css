@@ -335,8 +335,8 @@ footer {
   flex-direction: column;
   isolation: isolate;
   position: relative;
-  width: 18rem;
-  height: 8rem;
+  width: auto; /* 解除宽度限制 */
+  height: auto; /* 解除高度限制 */
   background: #29292c;
   border-radius: 1rem;
   overflow: hidden;
