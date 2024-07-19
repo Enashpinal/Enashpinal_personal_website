@@ -150,7 +150,7 @@ section:hover {
 .gallery-item p {
     margin: 0;
     padding: 1rem;
-    background-color: #f4f4f4; /* 段落背景色保持不变 */
+    background-color: lightblue; 
     border-top: 1px solid #ddd;
     transition: background-color 0.3s ease;
 }
@@ -163,7 +163,6 @@ section:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    background-color: lightblue; /* 设置背景色为浅蓝色 */
 }
 
 
