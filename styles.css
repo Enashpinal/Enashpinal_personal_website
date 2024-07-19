@@ -291,7 +291,7 @@ footer {
         transform: translateY(0);
     }
 }
-.button {
+.button2 {
   position: relative;
   width: 120px;
   height: 40px;
@@ -308,7 +308,7 @@ footer {
   cursor: pointer;
 }
 
-.button::before {
+.button2::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -318,31 +318,30 @@ footer {
   width: 128px;
   height: 48px;
   border-radius: 10px;
-  background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+  background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
   z-index: -10;
   pointer-events: none;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.button::after {
+.button2::after {
   content: "";
   z-index: -1;
   position: absolute;
   inset: 0;
-  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
   transform: translate3d(0, 0, 0) scale(0.95);
   filter: blur(20px);
 }
 
-.button:hover::after {
+.button2:hover::after {
   filter: blur(30px);
 }
 
-.button:hover::before {
+.button2:hover::before {
   transform: rotate(-180deg);
 }
 
-.button:active::before {
+.button2:active::before {
   scale: 0.7;
 }
-
