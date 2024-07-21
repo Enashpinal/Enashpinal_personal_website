@@ -441,10 +441,11 @@ footer {
 }
 
 .bcard {
- margin: 0 auto;
- background-color: #F8FBFE;
- border-radius: 8px;
- z-index: 1;
+  margin: 0 auto;
+  background-color: #F8FBFE;
+  border-radius: 8px;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .tools {
