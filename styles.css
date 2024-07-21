@@ -67,7 +67,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom, #f2f2f2, #ffffff); 
     transition: background-color 0.3s ease;
     scroll-behavior: smooth;
 }
