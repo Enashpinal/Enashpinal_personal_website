@@ -179,6 +179,7 @@ section:hover {
     border-radius: 20px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: lightblue; 
 }
 
 .gallery-item a {
@@ -196,6 +197,7 @@ section:hover {
 .gallery-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    background-color: lightblue; 
 }
 
 .gallery-item img:hover {
