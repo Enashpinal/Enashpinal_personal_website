@@ -441,8 +441,6 @@ footer {
 }
 
 .bcard {
- width: 190px;
- height: 254px;
  margin: 0 auto;
  background-color: #F8FBFE;
  border-radius: 8px;
@@ -462,8 +460,6 @@ footer {
 .box {
  display: inline-block;
  align-items: center;
- width: 10px;
- height: 10px;
  padding: 1px;
  border-radius: 50%;
 }
