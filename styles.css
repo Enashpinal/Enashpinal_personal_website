@@ -1,44 +1,54 @@
-
-.buttont {
-  margin: 0;
-  height: auto;
-  background: transparent;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  padding-bottom: 20px;
-}
-
-.buttont {
-  --border-right: 6px;
-  --text-stroke-color: rgba(255,255,255,0.6);
-  --animation-color: #37FF8B;
-  --fs-size: 2em;
-  letter-spacing: 3px;
-  text-decoration: none;
-  font-size: var(--fs-size);
-  font-family: "Arial";
+.button {
   position: relative;
+  border: none;
+  background: transparent;
+  --stroke-color: #ffffff7c;
+  --ani-color: rgba(95, 3, 244, 0);
+  --color-gar: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  letter-spacing: 3px;
+  font-size: 2em;
+  font-family: "Arial";
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px var(--text-stroke-color);
+  -webkit-text-stroke: 1px var(--stroke-color);
+  cursor: pointer;
 }
+
 .hover-text {
   position: absolute;
-  box-sizing: border-box;
-  content: attr(data-text);
-  color: var(--animation-color);
+  top: 0;
+  left: 0;
   width: 0%;
-  inset: 0;
-  border-right: var(--border-right) solid var(--animation-color);
+  background: var(--color-gar);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200%;
   overflow: hidden;
-  transition: 0.5s;
-  -webkit-text-stroke: 1px var(--animation-color);
+  transition: all 1s;
+  animation: 8s ani infinite;
+  border-bottom: 2px solid transparent;
 }
-.buttont:hover .hover-text {
+
+.button:hover .hover-text {
   width: 100%;
-  filter: drop-shadow(0 0 23px var(--animation-color))
+  border-bottom: 2px solid #03a9f4;
+  -webkit-text-stroke: 1px var(--ani-color);
 }
+
+@keyframes ani {
+  0% {
+    background-position: 0%;
+  }
+
+  50% {
+    background-position: 400%;
+  }
+
+  100% {
+    background-position: 0%;
+  }
+}
+
 p{
    color: black;
   text-shadow: 0.1px 0.1px 5px white; 
