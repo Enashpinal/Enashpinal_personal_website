@@ -41,7 +41,7 @@ buttont::after {
 
 buttont p::before {
   position: absolute;
-  content: "Subscribe";
+  content: attr(data-text);
   text-shadow: 1px 1px 4px #c84747;
   width: 0%;
   inset: 0;
