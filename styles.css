@@ -84,7 +84,7 @@ body {
     transition: background-color 0.3s ease; 
     background-attachment: fixed; 
     scroll-behavior: smooth;
-  
+     text-shadow: 0.1px 0.1px 5px black; 
 
 }
 
@@ -112,7 +112,7 @@ header {
 }
 
 h1 {
-    margin-top: 20px; /* Add margin to push the title down */
+    margin-top: 20px;
 }
 
 nav {
