@@ -76,7 +76,9 @@ body {
     transition: background-color 0.3s ease; /* 保留过渡效果 */
     background-attachment: fixed; /* 背景固定 */
     scroll-behavior: smooth; /* 保留平滑滚动 */
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 2px 2px 2px black; /* 设置所有文字的阴影，模糊值减少为2px */
+  
+
 }
 
 header {
