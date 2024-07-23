@@ -12,6 +12,8 @@
   color: transparent;
   -webkit-text-stroke: 1px var(--stroke-color);
   cursor: pointer;
+  padding-bottom: 20px;
+  text-shadow: 0px 0px 3px #000000;
 }
 
 .hover-text {
@@ -32,7 +34,7 @@
 .button:hover .hover-text {
   width: 100%;
   border-bottom: 2px solid #03a9f4;
-  -webkit-text-stroke: 1px var(--ani-color);
+  -webkit-text-stroke: 3px var(--ani-color);
 }
 
 @keyframes ani {
@@ -48,6 +50,7 @@
     background-position: 0%;
   }
 }
+
 
 p{
    color: black;
