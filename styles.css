@@ -1,3 +1,7 @@
+h1, p {
+    color: black; /* 设置黑色字体 */
+}
+
 .cssbuttons-io-button {
   background: #a370f0;
   color: white;
