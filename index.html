@@ -87,6 +87,7 @@
 
         progressInput.addEventListener('input', () => {
             audio.currentTime = progressInput.value;
+            progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
         });
     </script>
     <header>
