@@ -76,7 +76,7 @@ body {
 
 header {
     text-align: center;
-    background: rgba(255, 255, 255, 0); /* 半透明背景 */
+    background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
     color: #fff;
     padding: 6rem 0; /* 增加内边距以增加高度 */
     border-radius: 0 0 20px 20px;
@@ -158,7 +158,7 @@ main {
 
 section {
     margin-bottom: 2rem;
-    background: rgba(255, 255, 255, 0); 
+    background: rgba(255, 255, 255, 0.2); 
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
