@@ -64,14 +64,14 @@ h2{
 
 
 @font-face {
-    font-family: 'qingniao';
-    src: url('QingNiaoHuaGuangJianMeiHei-2.ttf') format('truetype');
+    font-family: 'NiShi';
+    src: url('NiShiWoDeKeAiBaoBei-2.ttf') format('truetype');
 }
 p {
         font-size: 17px;
 }
 body {
-    font-family: 'qingniao',sans-serif;
+    font-family: '你是我的可爱宝贝',sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
