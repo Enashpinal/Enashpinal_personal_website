@@ -1,5 +1,5 @@
 p{
-   color: white;
+   color: black;
   text-shadow: 0.1px 0.1px 5px black; 
    font-size: 18.5px;
 }
@@ -8,7 +8,7 @@ h1{
   text-shadow: 2px 2px 2px black; 
 }
 h2{
-  color: white;
+  color: black;
   text-shadow: 2px 2px 2px black; 
 }
 .cssbuttons-io-button {
