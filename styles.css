@@ -70,6 +70,7 @@ body {
      background-image: url('https://api.imlazy.ink/img');
     background-position: center; /* 可选：将背景图像居中 */
     transition: background-color 0.3s ease; /* 保留过渡效果 */
+    background-attachment: fixed; /* 背景固定 */
     scroll-behavior: smooth; /* 保留平滑滚动 */
 }
 
