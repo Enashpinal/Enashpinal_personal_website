@@ -1,3 +1,7 @@
+h2 {
+  color: black;
+}
+
 .cssbuttons-io-button {
   background: #a370f0;
   color: white;
@@ -72,6 +76,7 @@ body {
     transition: background-color 0.3s ease; /* 保留过渡效果 */
     background-attachment: fixed; /* 背景固定 */
     scroll-behavior: smooth; /* 保留平滑滚动 */
+    text-shadow: 2px 2px 4px black;
 }
 
 header {
