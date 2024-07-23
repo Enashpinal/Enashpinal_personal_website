@@ -5,7 +5,7 @@ buttont {
   background: none;
   cursor: pointer;
   text-shadow: 1px 1px 4px #000000;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
 buttont {
@@ -15,7 +15,7 @@ buttont {
   position: relative;
   display: flex;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 40px;
   gap: 0.5rem;
   align-items: center;
 }
@@ -24,7 +24,7 @@ buttont p {
   margin: 0;
   
   position: relative;
-  font-size: 20px;
+  font-size: 40px;
   color: var(--primary-color);
 }
 
