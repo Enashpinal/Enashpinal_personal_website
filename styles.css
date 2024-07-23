@@ -1,4 +1,4 @@
-.button {
+.buttont {
   position: relative;
   border: none;
   background: transparent;
@@ -31,7 +31,7 @@
   border-bottom: 2px solid transparent;
 }
 
-.button:hover .hover-text {
+.buttont:hover .hover-text {
   width: 100%;
   border-bottom: 2px solid #03a9f4;
   -webkit-text-stroke: 3px var(--ani-color);
