@@ -1,10 +1,10 @@
 h1{
   color: black;
-  text-shadow: 2px 2px 2px black; /* 设置所有文字的阴影，模糊值减少为2px */
+  text-shadow: 2px 2px 2px black; 
 }
 h2{
   color: black;
-  text-shadow: 2px 2px 2px black; /* 设置所有文字的阴影，模糊值减少为2px */
+  text-shadow: 2px 2px 2px black; 
 }
 .cssbuttons-io-button {
   background: #a370f0;
@@ -64,33 +64,33 @@ h2{
 
 
 @font-face {
-    font-family: 'MiaoZi';
-    src: url('miaozi-sheyingti-2.ttf') format('truetype');
+    font-family: 'qingniao';
+    src: url('QingNiaoHuaGuangJianMeiHei-2.ttf') format('truetype');
 }
 p {
         font-size: 17px;
 }
 body {
-    font-family: 'MiaoZi', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'qingniao', 'qingniao', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
      background-image: url('https://api.imlazy.ink/img');
-    background-position: center; /* 可选：将背景图像居中 */
-    transition: background-color 0.3s ease; /* 保留过渡效果 */
-    background-attachment: fixed; /* 背景固定 */
-    scroll-behavior: smooth; /* 保留平滑滚动 */
+    background-position: center; 
+    transition: background-color 0.3s ease; 
+    background-attachment: fixed; 
+    scroll-behavior: smooth;
   
 
 }
 
 header {
     text-align: center;
-    background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    background: rgba(255, 255, 255, 0.2); 
     color: #fff;
-    padding: 6rem 0; /* 增加内边距以增加高度 */
+    padding: 6rem 0; 
     border-radius: 0 0 20px 20px;
-    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    backdrop-filter: blur(10px); 
     animation: fadeInDown 1s;
 }
 
@@ -151,9 +151,9 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #555;
     color: #ffd700;
-    transform: translateY(-3px); /* Lift the button */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
-    transform: scale(1.1); /* Scale up the button */
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.1); 
 }
 
 nav ul li a:active {
@@ -163,7 +163,7 @@ nav ul li a:active {
 main {
     padding: 2rem;
     animation: fadeIn 1s 1s backwards;
-    padding-top: 100px; /* Adjust padding to prevent content overlap with fixed nav */
+    padding-top: 100px; 
 }
 
 section {
@@ -228,7 +228,7 @@ section:hover {
 }
 
 .gallery-item:hover p {
-    background-color: lightblue; /* 段落悬停时背景色保持不变 */
+    background-color: lightblue;
 }
 
 .links-gallery {
@@ -243,7 +243,7 @@ section:hover {
     display: flex;
     align-items: center;
     padding: 1rem;
-    background: lightblue; /* 背景色改为淡蓝色 */
+    background: lightblue; 
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
