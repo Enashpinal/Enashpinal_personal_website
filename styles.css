@@ -76,10 +76,11 @@ body {
 
 header {
     text-align: center;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: rgba(255, 255, 255, 0); /* 半透明背景 */
     color: #fff;
-    padding: 6rem 0; /* Increase the padding to increase the height */
+    padding: 6rem 0; /* 增加内边距以增加高度 */
     border-radius: 0 0 20px 20px;
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
     animation: fadeInDown 1s;
 }
 
