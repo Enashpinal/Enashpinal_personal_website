@@ -8,3 +8,9 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
         });
     });
 });
+function setRandomBackground() {
+    const imgUrl = 'https://api.imlazy.ink/img';
+    document.body.style.backgroundImage = `url(${imgUrl})`;
+}
+
+window.onload = setRandomBackground;
