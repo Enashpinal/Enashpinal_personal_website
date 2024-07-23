@@ -91,12 +91,6 @@
         background-color: transparent;
       }
     }
-  </style>
-	<script>
-    document.addEventListener("DOMContentLoaded", function(event) { 
-      document.querySelector('.loader').style.display = 'none';
-    });
-  </script>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -112,6 +106,12 @@
 	    <div class="cell d-3"></div>
 	    <div class="cell d-4"></div>
 	  </div>
+	<script>
+	    setTimeout(function() {
+	      var loader = document.querySelector('.loader');
+	      loader.style.display = 'none';
+	    }, 2000);
+	  </script>
 	<div class="ccard">
         <div class="cover"></div>
         <div class="content">
