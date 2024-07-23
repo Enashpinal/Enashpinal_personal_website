@@ -1,44 +1,46 @@
-buttont {
-  font-size: 80px;
-  color: #e1e1e1;
-  font-family: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  position: relative;
+
+.buttont {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
   border: none;
-  background: none;
+  cursor: pointer;
+  margin-bottom: 20px; 
+  text-shadow: 1px 1px 4px #37FF8B;
+}
+
+.buttont {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255,255,255,0.6);
+  --animation-color: #37FF8B;
+  --fs-size: 3em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
   text-transform: uppercase;
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 400ms;
-  transition-property: color;
-  
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
 }
-
-buttont:focus,
-buttont:hover {
-  color: #fff;
-}
-
-buttont:focus:after,
-buttont:hover:after {
-  width: 100%;
-  left: 0%;
-}
-
-buttont:after {
-  content: "";
-  pointer-events: none;
-  bottom: -2px;
-  left: 50%;
+.hover-text {
   position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
   width: 0%;
-  height: 2px;
-  background-color: #fff;
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 400ms;
-  transition-property: width, left;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
 }
 
+.buttont:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
 p{
    color: black;
   text-shadow: 0.1px 0.1px 5px white; 
