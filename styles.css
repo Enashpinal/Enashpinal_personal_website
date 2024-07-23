@@ -67,9 +67,11 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-  background: linear-gradient(to bottom right, #6CA6CD, #C0B0D8);
-    transition: background-color 0.3s ease;
-    scroll-behavior: smooth;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 背景固定 */
+    transition: background-color 0.3s ease; /* 保留过渡效果 */
+    scroll-behavior: smooth; /* 保留平滑滚动 */
 }
 
 header {
