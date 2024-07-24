@@ -1,5 +1,6 @@
 img {
-  box-shadow: 2px 2px 3px white; /* 全局阴影样式 */
+  box-shadow: 2px 2px 3px white;
+  border-radius: 10px;
 }
 
 .container {
