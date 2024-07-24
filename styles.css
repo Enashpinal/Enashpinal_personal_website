@@ -5,9 +5,9 @@
 }
 
 .window {
+  position: relative; 
   height: 500px;
   width: 500px;
-  position: absolute;
   background-color: #fff;
   border: 2px solid #333;
   border-radius: 15px;
@@ -42,7 +42,7 @@
   height: 10px;
   border-radius: 5px;
   margin: 5px;
-  transition: background-color 0.2s ease;
+  transition:-color 0.2s ease;
 }
 
 .window-button.close {
