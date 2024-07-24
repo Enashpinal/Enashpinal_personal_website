@@ -114,234 +114,97 @@ document.write("欢迎光临！您是本页面第 " + visits + " 位访问者！
     <main>
         <section>
          <h2>一些精美的按钮设计（CSS+HTML）</h2> 
-          <img src="blog/b5/img1.webp" alt="img">
-                      <div class="container"> 
-              <div class="window"> 
-                <div class="window-title">
-                  <p>CSS code</p>
-                  <div class="window-buttons">
-                    <div class="window-button fullscreen"></div>
-                    <div class="window-button reduce"></div>
-                    <div class="window-button close"></div>
-                  </div>
-                </div>
-                <div class="console">
-                  <pre><code>.button {
-
-	 margin: 0;
-
-	 height: auto;
-
- 	background: transparent;
-
-	 padding: 0;
-
-	 border: none;
-
-	 cursor: pointer;
-
+          <img src="blog/b5/img1.webp" alt="img"><br>
+	<div class="container"> 
+  <div class="window"> 
+    <div class="window-title">
+      <p>CSS code</p>
+      <div class="window-buttons">
+        <div class="window-button fullscreen"></div>
+        <div class="window-button reduce"></div>
+        <div class="window-button close"></div>
+      </div>
+    </div>
+    <div class="console">
+<pre><code>
+.button {
+	margin: 0;
+	height: auto;
+	background:;
+	padding: 0;
+	border: none;
+	cursor: pointer;
 }
-
 
 
 .button {
-
-	 --border-right: 6px;
-
-	 --text-stroke-color: rgba(255,255,255,0.6);
-
-	 --animation-color: #37FF8B;
-
-	 --fs-size: 2em;
-
-	 letter-spacing: 3px;
-
-	 text-decoration: none;
-
- 	font-size: var(--fs-size);
-
-	 font-family: "Arial";
-
-	 position: relative;
-
-	 text-transform: uppercase;
-
-	 color: transparent;
-
-	 -webkit-text-stroke: 1px var(--text-stroke-color);
-
+	--border-right: 6px;
+	--text-stroke-color: rgba(255,255,255,0.6);
+	--animation-color: #37FF8B;
+	--fs-size: 2em;
+	letter-spacing: 3px;
+	text-decoration: none;
+	font-size: var(--fs-size);
+	font-family: "Arial";
+	position: relative;
+	text-transform: uppercase;
+	color:;
+	-webkit-text-stroke: 1px var(--text-stroke-color);
 }
 
 .hover-text {
-
-	 position: absolute;
-
-	 box-sizing: border-box;
-
- 	content: attr(data-text);
-
-	 color: var(--animation-color);
-
-	 width: 0%;
-
-	 inset: 0;
-
-	 border-right: var(--border-right) solid var(--animation-color);
-
-	 overflow: hidden;
-
-	 transition: 0.5s;
-
-	 -webkit-text-stroke: 1px var(--animation-color);
-
+	position: absolute;
+	box-sizing: border-box;
+	content: attr(data-text);
+	color: var(--animation-color);
+	width: 0%;
+	inset: 0;
+	border-right: var(--border-right) solid var(--animation-color);
+	overflow: hidden;
+	transition: 0.5s;
+	-webkit-text-stroke: 1px var(--animation-color);
 }
 
 .button:hover .hover-text {
-
-	 width: 100%;
-
-	 filter: drop-shadow(0 0 23px var(--animation-color))
-
+	width: 100%;
+	filter: drop-shadow(0 0 23px var(--animation-color))
 }
-  </code></pre>
-                </div>
-              </div>
-            </div>
-
-            
-             <div class="container"> 
-              <div class="window"> 
-                <div class="window-title">
-                  <p>HTML code</p>
-                  <div class="window-buttons">
-                    <div class="window-button fullscreen"></div>
-                    <div class="window-button reduce"></div>
-                    <div class="window-button close"></div>
-                  </div>
-                </div>
-                <div class="console">
-                  <pre><code><button class="button" data-text="Awesome">
-
- 	 <span class="actual-text">&nbsp;TITLE&nbsp;</span>
-
- 	 <span aria-hidden="true" class="hover-text">&nbsp;TITLE&nbsp;</span>
-
-</button></code></pre>
-                </div>
-              </div>
-            </div>
-          <img src="blog/b5/img2.webp" alt="img">
-    
-            <div class="container"> 
-              <div class="window"> 
-                <div class="window-title">
-                  <p>CSS code</p>
-                  <div class="window-buttons">
-                    <div class="window-button fullscreen"></div>
-                    <div class="window-button reduce"></div>
-                    <div class="window-button close"></div>
-                  </div>
-                </div>
-                <div class="console">
-                  <pre><code>.btn-donate {
-
-	 --clr-font-main: hsla(0 0% 20% / 100);
-
-	 --btn-bg-1: hsla(194 100% 69% / 1);
-
-	 --btn-bg-2: hsla(217 100% 56% / 1);
-
-	 --btn-bg-color: hsla(360 100% 100% / 1);
-
-	 --radii: 0.5em;
-
-	 cursor: pointer;
-
-	 padding: 0.9em 1.4em;
-
-	 min-width: 120px;
-
-	 min-height: 44px;
-
-	 font-size: var(--size, 1rem);
-
-	 font-family: "Segoe UI", system-ui, sans-serif;
-
-	 font-weight: 500;
-
-	 transition: 0.8s;
-
-	 background-size: 280% auto;
-
-	 background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
-
-	 border: none;
-
-	 border-radius: var(--radii);
-
-	 color: var(--btn-bg-color);
-
-	 box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
-
-}
-
-.btn-donate:hover {
-
-	 background-position: right top;
-
-}
-
-.btn-donate:is(:focus, :focus-visible, :active) {
-
- 	outline: none;
-
- 	box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-
- 	.btn-donate {
-
- 		 transition: linear;
-
-	 }
-
-}</code></pre>
-                </div>
-              </div>
-            </div>
-  
-                      <div class="container"> 
-              <div class="window"> 
-                <div class="window-title">
-                  <p>HTML code</p>
-                  <div class="window-buttons">
-                    <div class="window-button fullscreen"></div>
-                    <div class="window-button reduce"></div>
-                    <div class="window-button close"></div>
-                  </div>
-                </div>
-                <div class="console">
-                  <pre><code><button class="btn-donate">
-
- 	 click me
-
-</button>
-
 </code></pre>
-                </div>
-              </div>
-            </div>
-          <img src="blog/b5/img3.webp" alt="img">
-          <img src="blog/b5/img4.webp" alt="img">
-          <img src="blog/b5/img5.webp" alt="img">
-          <img src="blog/b5/img6.webp" alt="img">
-          <img src="blog/b5/img7.webp" alt="img">
-          <img src="blog/b5/img8.webp" alt="img">
-          <img src="blog/b5/img9.webp" alt="img">
-          <img src="blog/b5/img10.webp" alt="img">
-          <img src="blog/b5/img11.webp" alt="img">
+    </div>
+  </div>
+</div><br>
+<div class="container"> 
+  <div class="window"> 
+    <div class="window-title">
+      <p>HTML code</p>
+      <div class="window-buttons">
+        <div class="window-button fullscreen"></div>
+        <div class="window-button reduce"></div>
+        <div class="window-button close"></div>
+      </div>
+    </div>
+    <div class="console">
+<pre><code>
+&lt;button class="btn"&gt;
+      Click me
+&lt;/button&gt;
+</code></pre>
+    </div>
+  </div>
+</div><br>
+
+
+
+	  <img src="blog/b5/img2.webp" alt="img"><br>
+          <img src="blog/b5/img3.webp" alt="img"><br>
+          <img src="blog/b5/img4.webp" alt="img"><br>
+          <img src="blog/b5/img5.webp" alt="img"><br>
+          <img src="blog/b5/img6.webp" alt="img"><br>
+          <img src="blog/b5/img7.webp" alt="img"><br>
+          <img src="blog/b5/img8.webp" alt="img"><br>
+          <img src="blog/b5/img9.webp" alt="img"><br>
+          <img src="blog/b5/img10.webp" alt="img"><br>
+          <img src="blog/b5/img11.webp" alt="img"><br>
         </section>
     </main>
     <footer>
