@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【前端开发】一些精美的按钮设计（CSS+HTML）</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="button">回到主菜单</a>
+        <h1>【前端开发】一些精美的按钮设计（CSS+HTML）</h1><br>
+	<SCRIPT language=JavaScript>
+<!--
+
+var caution = false
+
+function setCookie(name, value, expires, path, domain, secure) {
+
+var curCookie = name + "=" + escape(value) +
+
+((expires) ? "; expires=" + expires.toGMTString() : "") +
+
+((path) ? "; path=" + path : "") +
+
+((domain) ? "; domain=" + domain : "") +
+
+((secure) ? "; secure" : "")
+
+if (!caution || (name + "=" + escape(value)).length <= 4000)
+
+document.cookie = curCookie
+
+else
+
+if (confirm("Cookie exceeds 4KB and will be cut!"))
+
+document.cookie = curCookie
+
+}
+
+function getCookie(name) {
+
+var prefix = name + "="
+
+var cookieStartIndex = document.cookie.indexOf(prefix)
+
+if (cookieStartIndex == -1)
+
+return null
+
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+
+if (cookieEndIndex == -1)
+
+cookieEndIndex = document.cookie.length
+
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+
+}
+
+function deleteCookie(name, path, domain) {
+
+if (getCookie(name)) {
+
+document.cookie = name + "=" +
+
+((path) ? "; path=" + path : "") +
+
+((domain) ? "; domain=" + domain : "") +
+
+"; expires=Thu, 01-Jan-70 00:00:01 GMT"
+
+}
+
+}
+
+function fixDate(date) {
+
+var base = new Date(0)
+
+var skew = base.getTime()
+
+if (skew > 0)
+
+date.setTime(date.getTime() - skew)
+
+}
+
+var now = new Date()
+
+fixDate(now)
+
+now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000)
+
+var visits = getCookie("counter")
+
+if (!visits)
+
+visits = 1
+
+else
+
+visits = parseInt(visits) + 1
+
+setCookie("counter", visits, now)
+
+document.write("欢迎光临！您是本页面第 " + visits + " 位访问者！")
+
+// -->
+</SCRIPT><br>
+    </header>
+    <main>
+        <section>
+         <h2>一些精美的按钮设计（CSS+HTML）</h2> 
+          <img src="blog/b5/img1.webp" alt="img">
+                      <div class="container"> 
+              <div class="window"> 
+                <div class="window-title">
+                  <p>CSS code</p>
+                  <div class="window-buttons">
+                    <div class="window-button fullscreen"></div>
+                    <div class="window-button reduce"></div>
+                    <div class="window-button close"></div>
+                  </div>
+                </div>
+                <div class="console">
+                  <pre><code>.button {
+
+	 margin: 0;
+
+	 height: auto;
+
+ 	background: transparent;
+
+	 padding: 0;
+
+	 border: none;
+
+	 cursor: pointer;
+
+}
+
+
+
+.button {
+
+	 --border-right: 6px;
+
+	 --text-stroke-color: rgba(255,255,255,0.6);
+
+	 --animation-color: #37FF8B;
+
+	 --fs-size: 2em;
+
+	 letter-spacing: 3px;
+
+	 text-decoration: none;
+
+ 	font-size: var(--fs-size);
+
+	 font-family: "Arial";
+
+	 position: relative;
+
+	 text-transform: uppercase;
+
+	 color: transparent;
+
+	 -webkit-text-stroke: 1px var(--text-stroke-color);
+
+}
+
+.hover-text {
+
+	 position: absolute;
+
+	 box-sizing: border-box;
+
+ 	content: attr(data-text);
+
+	 color: var(--animation-color);
+
+	 width: 0%;
+
+	 inset: 0;
+
+	 border-right: var(--border-right) solid var(--animation-color);
+
+	 overflow: hidden;
+
+	 transition: 0.5s;
+
+	 -webkit-text-stroke: 1px var(--animation-color);
+
+}
+
+.button:hover .hover-text {
+
+	 width: 100%;
+
+	 filter: drop-shadow(0 0 23px var(--animation-color))
+
+}
+  </code></pre>
+                </div>
+              </div>
+            </div>
+
+            
+             <div class="container"> 
+              <div class="window"> 
+                <div class="window-title">
+                  <p>HTML code</p>
+                  <div class="window-buttons">
+                    <div class="window-button fullscreen"></div>
+                    <div class="window-button reduce"></div>
+                    <div class="window-button close"></div>
+                  </div>
+                </div>
+                <div class="console">
+                  <pre><code><button class="button" data-text="Awesome">
+
+ 	 <span class="actual-text">&nbsp;TITLE&nbsp;</span>
+
+ 	 <span aria-hidden="true" class="hover-text">&nbsp;TITLE&nbsp;</span>
+
+</button></code></pre>
+                </div>
+              </div>
+            </div>
+          <img src="blog/b5/img2.webp" alt="img">
+    
+            <div class="container"> 
+              <div class="window"> 
+                <div class="window-title">
+                  <p>CSS code</p>
+                  <div class="window-buttons">
+                    <div class="window-button fullscreen"></div>
+                    <div class="window-button reduce"></div>
+                    <div class="window-button close"></div>
+                  </div>
+                </div>
+                <div class="console">
+                  <pre><code>.btn-donate {
+
+	 --clr-font-main: hsla(0 0% 20% / 100);
+
+	 --btn-bg-1: hsla(194 100% 69% / 1);
+
+	 --btn-bg-2: hsla(217 100% 56% / 1);
+
+	 --btn-bg-color: hsla(360 100% 100% / 1);
+
+	 --radii: 0.5em;
+
+	 cursor: pointer;
+
+	 padding: 0.9em 1.4em;
+
+	 min-width: 120px;
+
+	 min-height: 44px;
+
+	 font-size: var(--size, 1rem);
+
+	 font-family: "Segoe UI", system-ui, sans-serif;
+
+	 font-weight: 500;
+
+	 transition: 0.8s;
+
+	 background-size: 280% auto;
+
+	 background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+
+	 border: none;
+
+	 border-radius: var(--radii);
+
+	 color: var(--btn-bg-color);
+
+	 box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+
+}
+
+.btn-donate:hover {
+
+	 background-position: right top;
+
+}
+
+.btn-donate:is(:focus, :focus-visible, :active) {
+
+ 	outline: none;
+
+ 	box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+ 	.btn-donate {
+
+ 		 transition: linear;
+
+	 }
+
+}</code></pre>
+                </div>
+              </div>
+            </div>
+  
+                      <div class="container"> 
+              <div class="window"> 
+                <div class="window-title">
+                  <p>HTML code</p>
+                  <div class="window-buttons">
+                    <div class="window-button fullscreen"></div>
+                    <div class="window-button reduce"></div>
+                    <div class="window-button close"></div>
+                  </div>
+                </div>
+                <div class="console">
+                  <pre><code><button class="btn-donate">
+
+ 	 click me
+
+</button>
+
+</code></pre>
+                </div>
+              </div>
+            </div>
+          <img src="blog/b5/img3.webp" alt="img">
+          <img src="blog/b5/img4.webp" alt="img">
+          <img src="blog/b5/img5.webp" alt="img">
+          <img src="blog/b5/img6.webp" alt="img">
+          <img src="blog/b5/img7.webp" alt="img">
+          <img src="blog/b5/img8.webp" alt="img">
+          <img src="blog/b5/img9.webp" alt="img">
+          <img src="blog/b5/img10.webp" alt="img">
+          <img src="blog/b5/img11.webp" alt="img">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Enashpinal_YEE. 保留所有权利。</p>
+    </footer>
+</body>
+</html>
