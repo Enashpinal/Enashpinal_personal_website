@@ -1,8 +1,8 @@
-let scrollSpeed = 40;
+let scrollSpeed = 30;
 let currentScroll = window.scrollY; 
 let targetScroll = currentScroll;
-let inertia = 0.005; // 增加惯性值以实现更平滑的滚动
-let isSmoothScrolling = false; // 标记是否在平滑滚动中
+let inertia = 0.005; 
+let isSmoothScrolling = false; // 标志位，检查是否正在进行平滑滚动
 
 function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * inertia;
@@ -11,7 +11,7 @@ function smoothScroll() {
     if (Math.abs(targetScroll - currentScroll) > 0.1) {
         requestAnimationFrame(smoothScroll);
     } else {
-        isSmoothScrolling = false; // 平滑滚动结束
+        isSmoothScrolling = false; // 滚动结束
     }
 }
 
@@ -19,7 +19,6 @@ window.addEventListener('wheel', function(event) {
     if (!isSmoothScrolling) { // 仅在未进行平滑滚动时处理正常滚动
         targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
         smoothScroll();
-        isSmoothScrolling = true; // 设置为正在平滑滚动
     }
 }, { passive: false });
 
