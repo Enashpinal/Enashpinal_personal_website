@@ -28,7 +28,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             targetScroll = targetElement.offsetTop; 
             const startScroll = currentScroll; 
             const distance = targetScroll - startScroll; 
-            const duration = 100; 
+            const duration = 1000; 
             const startTime = performance.now();
 
             function animateScroll(currentTime) {
