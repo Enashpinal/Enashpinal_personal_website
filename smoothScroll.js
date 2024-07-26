@@ -1,7 +1,7 @@
 let scrollSpeed = 30;
 let currentScroll = window.scrollY; 
 let targetScroll = currentScroll;
-let inertia = 0.001; 
+let inertia = 0.005; 
 
 function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * inertia;
