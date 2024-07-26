@@ -177,14 +177,17 @@
 		</button>
             <style>
 	        .container {
-	            margin: 0 auto;
-	            padding: 20px;
-	            backdrop-filter: blur(10px);
-	            background: rgba(255, 255, 255, 0.3);
-	            border-radius: 15px;
-	            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-	            animation: fadeIn 0.5s forwards;
-	        }
+		    margin: 0 auto;
+		    padding: 20px;
+		    backdrop-filter: blur(10px);
+		    background: rgba(255, 255, 255, 0.3);
+		    border-radius: 15px;
+		    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+		    animation: fadeIn 0.5s forwards;
+		    width: auto; 
+		    max-width: 100%; 
+		}
+
 	
 	        @keyframes fadeIn {
 	            from {
@@ -247,7 +250,7 @@
 		    opacity: 0;
 		    transform: translateY(20px);
 		    animation: fadeInUp 0.5s forwards;
-		    display: block;
+		    display: none;
 		    width: auto; 
 		    max-width: 100%; 
 		}
