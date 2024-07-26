@@ -169,6 +169,34 @@
                 <!-- 更多作品 -->
             </div>
         </section>
+	<style>
+		#blog {
+		    width: 100%; 
+		    height: 100vh; 
+		    display: flex; 
+		    flex-direction: column; 
+		}
+		
+		#blog .container {
+		    flex: 1; 
+		    display: flex; 
+		    flex-direction: column; 
+		}
+		
+		#blog .filter, #blog .blog-list {
+		    width: 100%; 
+		}
+		
+		#blog .filter {
+		    margin-bottom: 1rem;
+		}
+		
+		#blog .card {
+		    width: 100%; 
+		    box-sizing: border-box; 
+		}
+
+	</style>
         <section id="blog">
 		<button class="buttont" data-text="Awesome">
 		    <span class="actual-text">&nbsp;blogs&nbsp;</span>
