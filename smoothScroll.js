@@ -1,30 +1,27 @@
-let scrollSpeed = 20; 
-let currentScroll = window.scrollY; 
-let targetScroll = currentScroll; 
-let inertia = 0.001; 
+let scrollSpeed = 20;
+let currentScroll = window.scrollY;
+let targetScroll = currentScroll;
+let inertia = 0.01;
 
 function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * inertia;
     window.scrollTo(0, currentScroll);
 
-    if (Math.abs(targetScroll - currentScroll) > 0.1) {
+    if (Math.abs(targetScroll - currentScroll) > 1) {
         requestAnimationFrame(smoothScroll);
+    } else {
+        window.scrollTo(0, targetScroll);
     }
 }
 
-window.addEventListener('wheel', function(event) {
-    event.preventDefault(); 
-    targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
-    smoothScroll(); 
-}, { passive: false });
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        e.preventDefault(); 
-
+        e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-            targetScroll = targetElement.offsetTop; 
+            targetScroll = targetElement.offsetTop;
+            currentScroll = window.scrollY;
             smoothScroll();
         }
     });
