@@ -174,44 +174,316 @@
 		    <span class="actual-text">&nbsp;blogs&nbsp;</span>
 		    <span aria-hidden="true" class="hover-text">&nbsp;blogs&nbsp;</span>
 		</button>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <a href="blog-item1.html">
-                        <p>MINECRAFT | 没有正版也可以免费定制皮肤头像了！</p>
-                        <p>免费定制MCFPF头像</p>
-                    </a>
-                </div>
-                <div class="gallery-item">
-                    <a href="blog-item2.html">
-			<p>【教程】百度网盘如何像磁盘一样挂载到本地</p>
-                        <p>把百度网盘部署至本地</p>
-                    </a>
-                </div>
-                <div class="gallery-item">
-                    <a href="blog-item3.html">
-                        <p>【MC服务器宣传】CloudDream云梦谷服务器招新</p>
-                        <p>快来帮帮我们！</p>
-                    </a>
-                </div>
-		<div class="gallery-item">
-                 <a href="blog-item4.html">
-                        <p>【ChatGPT】2024年7月ChatGPT可用镜像收集</p>
-                        <p>ChatGPT镜像站汇总</p>
-                    </a>
-                </div>
-		<div class="gallery-item">
-                 <a href="blog-item5.html">
-                        <p>【前端开发】一些精美的按钮设计（CSS+HTML）</p>
-                        <p>附CSS、HTML代码</p>
-                    </a>
-                </div>
-		<div class="gallery-item">
-                 <a href="blog-item6.html">
-                        <p>【前端开发】简单精致的音频播放卡片</p>
-                        <p>HTML+JS+CSS</p>
-                    </a>
-                </div>
-            </div>
+            <style>
+	        .container {
+	            max-width: 800px;
+	            margin: 0 auto;
+	            padding: 20px;
+	            backdrop-filter: blur(10px);
+	            background: rgba(255, 255, 255, 0.3);
+	            border-radius: 15px;
+	            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	            animation: fadeIn 0.5s forwards;
+	        }
+	
+	        @keyframes fadeIn {
+	            from {
+	                opacity: 0;
+	                transform: translateY(20px);
+	            }
+	            to {
+	                opacity: 1;
+	                transform: translateY(0);
+	            }
+	        }
+	
+	        @keyframes slideIn {
+	            from {
+	                transform: translateY(-20px);
+	                opacity: 0;
+	            }
+	            to {
+	                transform: translateY(0);
+	                opacity: 1;
+	            }
+	        }
+	
+	        .filter {
+	            margin-bottom: 20px;
+	            text-align: center;
+	        }
+	
+	        .filter label {
+	            margin-right: 10px;
+	            font-weight: bold;
+	        }
+	
+	        select {
+	            padding: 10px;
+	            border-radius: 5px;
+	            border: 1px solid #ccc;
+	            transition: border-color 0.3s;
+	            backdrop-filter: blur(5px);
+	            background: rgba(255, 255, 255, 0.5);
+	        }
+	
+	        select:hover {
+	            border-color: #4A90E2;
+	        }
+	
+	        .blog-list {
+	            display: flex;
+	            flex-direction: column;
+	            gap: 20px;
+	        }
+	
+	        .card {
+	            background: rgba(255, 255, 255, 0.3);
+	            border-radius: 10px;
+	            padding: 20px;
+	            backdrop-filter: blur(10px);
+	            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	            transition: transform 0.3s, box-shadow 0.3s;
+	            opacity: 0;
+	            transform: translateY(20px);
+	            animation: fadeInUp 0.5s forwards;
+	            display: none; 
+	        }
+	
+	        @keyframes fadeInUp {
+	            to {
+	                opacity: 1;
+	                transform: translateY(0);
+	            }
+	        }
+	
+	        .card.visible {
+	            display: block; /* 仅当有.visible类时显示 */
+	            animation: fadeInUp 0.5s forwards;
+	        }
+	
+	        .card:hover {
+	            transform: scale(1.05);
+	            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+	        }
+	
+	        .card:active {
+	            transform: scale(0.95);
+	        }
+	
+	        .card-title {
+	            font-family: 'Montserrat', sans-serif;
+	            font-size: 1.5em;
+	            margin: 0 0 10px;
+	            color: #333;
+	            text-decoration: none; 
+	        }
+	
+	        .card-title:hover {
+	            color: #4A90E2; 
+	        }
+	
+	        .card-summary {
+	            margin: 0 0 10px;
+	            line-height: 1.6;
+	        }
+	
+	        .card-date {
+	            font-size: 0.9em;
+	            color: #888888;
+	            margin-bottom: 10px;
+	        }
+	
+	        .card-tags {
+	            margin-top: 10px;
+	        }
+	
+	        .tag {
+	            display: inline-block;
+	            background-color: rgba(244, 164, 54, 0.8);
+	            color: white;
+	            border-radius: 4px;
+	            padding: 5px 10px;
+	            margin-right: 5px;
+	            font-size: 0.9em;
+	            transition: background-color 0.3s, transform 0.3s;
+	        }
+	
+	        .tag:hover {
+	            background-color: rgba(212, 147, 26, 0.9);
+	            transform: scale(1.1);
+	        }
+	
+	        .load-more {
+	            text-align: center;
+	            margin-top: 20px;
+	            padding: 10px 20px;
+	            background-color: rgba(74, 144, 226, 0.8);
+	            color: white;
+	            border: none;
+	            border-radius: 5px;
+	            cursor: pointer;
+	            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+	        }
+	
+	        .load-more:hover {
+	            background-color: rgba(53, 122, 189, 0.9);
+	            transform: scale(1.05);
+	            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	        }
+	
+	        .load-more:active {
+	            transform: scale(0.95);
+	            box-shadow: none;
+	        }
+	    </style>
+	    <div class="container">
+	        <div class="filter">
+	            <label for="tag-filter">选择标签:</label>
+	            <select id="tag-filter">
+	                <option value="all">所有</option>
+	                <option value="Minecraft">Minecraft</option>
+	                <option value="ChatGPT">ChatGPT</option>
+	                <option value="收集">收集</option>
+	                <option value="教程">教程</option>
+	                <option value="MC服务器">MC服务器</option>
+	                <option value="标签6">标签6</option>
+	            </select>
+	        </div>
+	        <div class="blog-list" id="blog-list">
+	            <div class="card visible" data-tags="Minecraft">
+	                <a href="blog-item1.html" class="card-title">MINECRAFT | 没有正版也可以免费定制皮肤头像了！</a>
+	                <p class="card-summary">加我QQ免费定制MCFPF头像！</p>
+	                <p class="card-date">发布日期: 2024-06-05</p>
+	                <div class="card-tags">
+	                    <span class="tag">Minecraft</span>
+	                </div>
+	            </div>
+	            <div class="card visible" data-tags="教程">
+	                <a href="blog-item2.html" class="card-title">【教程】百度网盘如何像磁盘一样挂载到本地</a>
+	                <p class="card-summary">手把手教你把百度网盘部署至本地</p>
+	                <p class="card-date">发布日期: 2024-06-07</p>
+	                <div class="card-tags">
+	                    <span class="tag">教程</span>
+	                </div>
+	            </div>
+	            <div class="card visible" data-tags="MC服务器,Minecraft">
+	                <a href="blog-item3.html" class="card-title">【MC服务器宣传】CloudDream云梦谷服务器招新</a>
+	                <p class="card-summary">刚开3个月的新服，没人玩，快来帮帮我们！</p>
+	                <p class="card-date">发布日期: 2024-06-09</p>
+	                <div class="card-tags">
+	                    <span class="tag">MC服务器</span>
+	                    <span class="tag">Minecraft</span>
+	                </div>
+	            </div>
+	            <div class="card" data-tags="ChatGPT,收集">
+	                <a href="blog-item4.html" class="card-title">【ChatGPT】2024年7月ChatGPT可用镜像收集</a>
+	                <p class="card-summary">收集了8个ChatGPT（Claude）可用镜像</p>
+	                <p class="card-date">发布日期: 2024-07-21</p>
+	                <div class="card-tags">
+	                    <span class="tag">ChatGPT</span>
+	                    <span class="tag">收集</span>
+	                </div>
+	            </div>
+	            <div class="card" data-tags="前端开发,收集">
+	                <a href="blog-item5.html" class="card-title">【前端开发『搬运』】一些精美的按钮设计</a>
+	                <p class="card-summary">（CSS+HTML）这里收集了11个精美的按钮设计</p>
+	                <p class="card-date">发布日期: 2024-07-24</p>
+	                <div class="card-tags">
+	                    <span class="tag">前端开发</span>
+	                    <span class="tag">收集</span>
+	                </div>
+	            </div>
+	            <div class="card" data-tags="前端开发">
+	                <a href="blog-item6.html" class="card-title">【前端开发『原创』】简单精致的音频播放卡片</a>
+	                <p class="card-summary">（HTML+JS+CSS）一个简单的音频播放小卡片，固定在网页右下角。</p>
+	                <p class="card-date">发布日期: 2024-07-22</p>
+	                <div class="card-tags">
+	                    <span class="tag">前端开发</span>
+	                </div>
+	            </div>
+	        </div>
+	        <button class="load-more">加载更多</button>
+	    </div>
+	<script>
+	    const tagFilter = document.getElementById('tag-filter');
+	    const blogList = document.getElementById('blog-list');
+	    const cards = blogList.getElementsByClassName('card');
+	    const loadMoreButton = document.querySelector('.load-more');
+	
+	    let visibleCount = 3;
+	    let allVisible = false; 
+	    let currentTag = 'all'; 
+	
+	    function displayInitialCards() {
+	        for (let i = 0; i < visibleCount; i++) {
+	            if (cards[i] && isCardVisible(cards[i])) {
+	                cards[i].classList.add('visible');
+	                cards[i].style.display = 'block'; 
+	            }
+	        }
+	    }
+	
+	    function isCardVisible(card) {
+	        const tags = card.getAttribute('data-tags').split(',');
+	        return currentTag === 'all' || tags.includes(currentTag);
+	    }
+	
+	    displayInitialCards();
+	
+	    loadMoreButton.addEventListener('click', function() {
+	        if (!allVisible) {
+	            for (let i = visibleCount; i < cards.length; i++) {
+	                if (cards[i] && isCardVisible(cards[i])) {
+	                    cards[i].classList.add('visible');
+	                    cards[i].style.display = 'block'; 
+	                }
+	            }
+	            visibleCount = cards.length;
+	            loadMoreButton.textContent = '收起更多'; 
+	            allVisible = true; 
+	        } else {
+	            for (let i = 3; i < cards.length; i++) {
+	                if (cards[i]) {
+	                    cards[i].classList.remove('visible');
+	                    cards[i].style.display = 'none'; 
+	                }
+	            }
+	            visibleCount = 3; 
+	            loadMoreButton.textContent = '加载更多'; 
+	            allVisible = false; 
+	        }
+	    });
+	
+	    tagFilter.addEventListener('change', function() {
+	        currentTag = this.value;
+	        for (let card of cards) {
+	            card.classList.remove('visible'); 
+	            card.style.display = 'none';
+	        }
+	
+	        visibleCount = 3; 
+	        loadMoreButton.style.display = 'inline-block';
+	        loadMoreButton.textContent = '加载更多'; 
+	        allVisible = false; 
+	
+	        for (let card of cards) {
+	            if (isCardVisible(card)) {
+	                card.classList.add('visible'); 
+	                card.style.display = 'block';
+	            }
+	        }
+	
+	        const visibleCards = blogList.getElementsByClassName('visible');
+	        for (let i = 0; i < visibleCards.length; i++) {
+	            if (i < visibleCount) {
+	                visibleCards[i].style.display = 'block';
+	            } else {
+	                visibleCards[i].style.display = 'none';
+	            }
+	        }
+	    });
+	</script>
         </section>
         <section id="links">
 		<button class="buttont" data-text="Awesome">
