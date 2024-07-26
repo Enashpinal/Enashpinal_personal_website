@@ -1,8 +1,7 @@
-let scrollSpeed = 30;
+let scrollSpeed = 40;
 let currentScroll = window.scrollY; 
 let targetScroll = currentScroll;
 let inertia = 0.005; 
-let isSmoothScrolling = false; // 标志位，检查是否正在进行平滑滚动
 
 function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * inertia;
@@ -10,16 +9,13 @@ function smoothScroll() {
 
     if (Math.abs(targetScroll - currentScroll) > 0.1) {
         requestAnimationFrame(smoothScroll);
-    } else {
-        isSmoothScrolling = false; // 滚动结束
     }
 }
 
 window.addEventListener('wheel', function(event) {
-    if (!isSmoothScrolling) { // 仅在未进行平滑滚动时处理正常滚动
-        targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
-        smoothScroll();
-    }
+    event.preventDefault(); 
+    targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+    smoothScroll();
 }, { passive: false });
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -30,8 +26,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             targetScroll = targetElement.offsetTop; 
-            isSmoothScrolling = true; // 设置为正在平滑滚动
-            smoothScroll(); 
+            const startScroll = currentScroll;
+            const distance = targetScroll - startScroll;
+            const duration = 2000; 
+            const startTime = performance.now(); 
+
+            function animateScroll(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1); 
+                const newScroll = startScroll + distance * progress; 
+
+                window.scrollTo(0, newScroll);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateScroll); 
+                } else {
+                    currentScroll = newScroll; 
+                }
+            }
+
+            requestAnimationFrame(animateScroll); 
         }
     });
 });
