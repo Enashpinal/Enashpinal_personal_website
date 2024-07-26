@@ -237,18 +237,21 @@
 	            gap: 20px;
 	        }
 	
-	        .card {
-	            background: rgba(255, 255, 255, 0.3);
-	            border-radius: 10px;
-	            padding: 20px;
-	            backdrop-filter: blur(10px);
-	            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-	            transition: transform 0.3s, box-shadow 0.3s;
-	            opacity: 0;
-	            transform: translateY(20px);
-	            animation: fadeInUp 0.5s forwards;
-	            display: none; 
-	        }
+	       .card {
+		    background: rgba(255, 255, 255, 0.3);
+		    border-radius: 10px;
+		    padding: 20px;
+		    backdrop-filter: blur(10px);
+		    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		    transition: transform 0.3s, box-shadow 0.3s;
+		    opacity: 0;
+		    transform: translateY(20px);
+		    animation: fadeInUp 0.5s forwards;
+		    display: block;
+		    width: auto; 
+		    max-width: 100%; 
+		}
+
 	
 	        @keyframes fadeInUp {
 	            to {
