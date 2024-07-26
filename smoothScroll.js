@@ -1,4 +1,4 @@
-let scrollSpeed = 50;
+let scrollSpeed = 20;
 let currentScroll = window.scrollY; 
 let targetScroll = currentScroll;
 let inertia = 0.001; 
