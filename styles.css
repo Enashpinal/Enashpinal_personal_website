@@ -597,7 +597,7 @@ footer {
   transform-style: preserve-3d;
 }
 
-.content-box .card-title {
+.content-box .carde-title {
   display: inline-block;
   color: white;
   font-size: 25px;
@@ -606,11 +606,11 @@ footer {
   transform: translate3d(0px, 0px, 50px);
 }
 
-.content-box .card-title:hover {
+.content-box .carde-title:hover {
   transform: translate3d(0px, 0px, 60px);
 }
 
-.content-box .card-content {
+.content-box .carde-content {
   margin-top: 10px;
   font-size: 12px;
   font-weight: 700;
@@ -619,7 +619,7 @@ footer {
   transform: translate3d(0px, 0px, 30px);
 }
 
-.content-box .card-content:hover {
+.content-box .carde-content:hover {
   transform: translate3d(0px, 0px, 60px);
 }
 
@@ -736,10 +736,10 @@ footer {
     padding: 7.5px;
     box-sizing: border-box;
     gap: 7.5px;
-    position: fixed; /* Fix the position */
-    bottom: 10px; /* Distance from the bottom */
-    right: 10px; /* Distance from the right */
-    z-index: 1000; /* Ensure it is on top of all other elements */
+    position: fixed; 
+    bottom: 10px; 
+    right: 10px; 
+    z-index: 1000; 
 }
 
 .cover {
