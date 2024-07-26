@@ -26,26 +26,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             targetScroll = targetElement.offsetTop; 
-            const startScroll = currentScroll; // 当前滚动位置
-            const distance = targetScroll - startScroll; // 目标距离
-            const duration = 2000; // 2秒
-            const startTime = performance.now(); // 开始时间
+            const startScroll = currentScroll; 
+            const distance = targetScroll - startScroll; 
+            const duration = 100; 
+            const startTime = performance.now();
 
             function animateScroll(currentTime) {
-                const elapsed = currentTime - startTime; // 已经过的时间
-                const progress = Math.min(elapsed / duration, 1); // 计算进度
-                const newScroll = startScroll + distance * progress; // 计算新的滚动位置
+                const elapsed = currentTime - startTime; 
+                const progress = Math.min(elapsed / duration, 1); 
+                const newScroll = startScroll + distance * progress;
 
                 window.scrollTo(0, newScroll);
 
                 if (progress < 1) {
-                    requestAnimationFrame(animateScroll); // 继续动画
+                    requestAnimationFrame(animateScroll);
                 } else {
-                    currentScroll = newScroll; // 更新当前滚动位置
+                    currentScroll = newScroll;
                 }
             }
 
-            requestAnimationFrame(animateScroll); // 开始动画
+            requestAnimationFrame(animateScroll); 
         }
     });
 });
