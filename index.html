@@ -176,175 +176,166 @@
 		</button>
             <style>
 	        .container {
-	            max-width: 800px;
-	            margin: 0 auto;
-	            padding: 20px;
-	            backdrop-filter: blur(10px);
-	            background: rgba(255, 255, 255, 0.3);
-	            border-radius: 15px;
-	            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-	            animation: fadeIn 0.5s forwards;
-	        }
-	
-	        @keyframes fadeIn {
-	            from {
-	                opacity: 0;
-	                transform: translateY(20px);
-	            }
-	            to {
-	                opacity: 1;
-	                transform: translateY(0);
-	            }
-	        }
-	
-	        @keyframes slideIn {
-	            from {
-	                transform: translateY(-20px);
-	                opacity: 0;
-	            }
-	            to {
-	                transform: translateY(0);
-	                opacity: 1;
-	            }
-	        }
-	
-	        .filter {
-	            margin-bottom: 20px;
-	            text-align: center;
-	        }
-	
-	        .filter label {
-	            margin-right: 10px;
-	            font-weight: bold;
-	        }
-	
-	        select {
-	            padding: 10px;
-	            border-radius: 5px;
-	            border: 1px solid #ccc;
-	            transition: border-color 0.3s;
-	            backdrop-filter: blur(5px);
-	            background: rgba(255, 255, 255, 0.5);
-	        }
-	
-	        select:hover {
-	            border-color: #4A90E2;
-	        }
-	
-	        .blog-list {
-	            display: flex;
-	            flex-direction: column;
-	            gap: 20px;
-	        }
-	
-	        .card {
-	            background: rgba(255, 255, 255, 0.3);
-	            border-radius: 10px;
-	            padding: 20px;
-	            backdrop-filter: blur(10px);
-	            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-	            transition: transform 0.3s, box-shadow 0.3s;
-	            opacity: 0;
-	            transform: translateY(20px);
-	            animation: fadeInUp 0.5s forwards;
-	            display: none; 
-	        }
-	
-	        @keyframes fadeInUp {
-	            to {
-	                opacity: 1;
-	                transform: translateY(0);
-	            }
-	        }
-	
-	        .card.visible {
-	            display: block; 
-	            animation: fadeInUp 0.5s forwards;
-	        }
-	
-	        .card:hover {
-	            transform: scale(1.05);
-	            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-	        }
-	
-	        .card:active {
-	            transform: scale(0.95);
-	        }
-	
-	        .card-title {
-	            font-family: 'Montserrat', sans-serif;
-	            font-size: 1.5em;
-	            margin: 0 0 10px;
-	            color: #333;
-	            text-decoration: none; 
-	        }
-	
-	        .card-title:hover {
-	            color: #4A90E2; 
-	        }
-	
-	        .card-summary {
-	            margin: 0 0 10px;
-	            line-height: 1.6;
-	        }
-	
-	        .card-date {
-	            font-size: 0.9em;
-	            color: #888888;
-	            margin-bottom: 10px;
-	        }
-	
-	        .card-tags {
-	            margin-top: 10px;
-	        }
-	
-	        .tag {
-	            display: inline-block;
-	            background-color: rgba(244, 164, 54, 0.8);
-	            color: white;
-	            border-radius: 4px;
-	            padding: 5px 10px;
-	            margin-right: 5px;
-	            font-size: 0.9em;
-	            transition: background-color 0.3s, transform 0.3s;
-	        }
-	
-	        .tag:hover {
-	            background-color: rgba(212, 147, 26, 0.9);
-	            transform: scale(1.1);
-	        }
-	
-	        .load-more {
-	            text-align: center;
-	            margin-top: 20px;
-	            padding: 10px 20px;
-	            background-color: rgba(74, 144, 226, 0.8);
-	            color: white;
-	            border: none;
-	            border-radius: 5px;
-	            cursor: pointer;
-	            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-	        }
-	
-	        .load-more:hover {
-	            background-color: rgba(53, 122, 189, 0.9);
-	            transform: scale(1.05);
-	            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-	        }
-	
-	        .load-more:active {
-	            transform: scale(0.95);
-	            box-shadow: none;
-	        }
-		.container {
+		    max-width: 800px;
+		    margin: 0 auto;
+		    padding: 20px;
+		    backdrop-filter: blur(10px);
+		    background: rgba(255, 255, 255, 0.3);
+		    border-radius: 15px;
+		    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+		    animation: fadeIn 0.5s forwards;
 		    display: flex;
 		    flex-direction: column;
 		    align-items: flex-start;
 		    margin: 20px;
 		}
-        .tag-filter {
-            margin-bottom: 20px; 
-        }
+		
+		@keyframes fadeIn {
+		    from {
+		        opacity: 0;
+		        transform: translateY(20px);
+		    }
+		    to {
+		        opacity: 1;
+		        transform: translateY(0);
+		    }
+		}
+		
+		@keyframes slideIn {
+		    from {
+		        transform: translateY(-20px);
+		        opacity: 0;
+		    }
+		    to {
+		        transform: translateY(0);
+		        opacity: 1;
+		    }
+		}
+		
+		.filter {
+		    margin-bottom: 20px;
+		    text-align: center;
+		}
+		
+		.filter label {
+		    margin-right: 10px;
+		    font-weight: bold;
+		}
+		
+		select {
+		    padding: 10px;
+		    border-radius: 5px;
+		    border: 1px solid #ccc;
+		    transition: border-color 0.3s;
+		    backdrop-filter: blur(5px);
+		    background: rgba(255, 255, 255, 0.5);
+		}
+		
+		select:hover {
+		    border-color: #4A90E2;
+		}
+		
+		.blog-list {
+		    display: flex;
+		    flex-direction: column;
+		    gap: 20px;
+		}
+		
+		.card {
+		    background: rgba(255, 255, 255, 0.3);
+		    border-radius: 10px;
+		    padding: 20px;
+		    backdrop-filter: blur(10px);
+		    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		    opacity: 0;
+		    max-height: 0;
+		    overflow: hidden;
+		    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+		    transform: translateY(20px);
+		    display: block;
+		}
+		
+		.card.visible {
+		    opacity: 1;
+		    max-height: 500px; /* Adjust based on card content height */
+		    transform: translateY(0);
+		}
+		
+		.card:hover {
+		    transform: scale(1.05);
+		    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+		}
+		
+		.card:active {
+		    transform: scale(0.95);
+		}
+		
+		.card-title {
+		    font-family: 'Montserrat', sans-serif;
+		    font-size: 1.5em;
+		    margin: 0 0 10px;
+		    color: #333;
+		    text-decoration: none;
+		}
+		
+		.card-title:hover {
+		    color: #4A90E2;
+		}
+		
+		.card-summary {
+		    margin: 0 0 10px;
+		    line-height: 1.6;
+		}
+		
+		.card-date {
+		    font-size: 0.9em;
+		    color: #888888;
+		    margin-bottom: 10px;
+		}
+		
+		.card-tags {
+		    margin-top: 10px;
+		}
+		
+		.tag {
+		    display: inline-block;
+		    background-color: rgba(244, 164, 54, 0.8);
+		    color: white;
+		    border-radius: 4px;
+		    padding: 5px 10px;
+		    margin-right: 5px;
+		    font-size: 0.9em;
+		    transition: background-color 0.3s, transform 0.3s;
+		}
+		
+		.tag:hover {
+		    background-color: rgba(212, 147, 26, 0.9);
+		    transform: scale(1.1);
+		}
+		
+		.load-more {
+		    text-align: center;
+		    margin-top: 20px;
+		    padding: 10px 20px;
+		    background-color: rgba(74, 144, 226, 0.8);
+		    color: white;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+		}
+		
+		.load-more:hover {
+		    background-color: rgba(53, 122, 189, 0.9);
+		    transform: scale(1.05);
+		    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		}
+		
+		.load-more:active {
+		    transform: scale(0.95);
+		    box-shadow: none;
+		}
+
 	    </style>
 	    <div class="container">
 	        <div class="filter">
@@ -356,7 +347,7 @@
 	                <option value="收集">收集</option>
 	                <option value="教程">教程</option>
 	                <option value="MC服务器">MC服务器</option>
-	                <option value="标签6">标签6</option>
+	                <option value="前端开发">前端开发</option>
 	            </select>
 	        </div>
 	        <div class="blog-list" id="blog-list">
@@ -415,83 +406,82 @@
 	        <button class="load-more">加载更多</button>
 	    </div>
 	<script>
-	    const tagFilter = document.getElementById('tag-filter');
-	    const blogList = document.getElementById('blog-list');
-	    const cards = blogList.getElementsByClassName('card');
-	    const loadMoreButton = document.querySelector('.load-more');
-	
-	    let visibleCount = 3;
-	    let allVisible = false; 
-	    let currentTag = 'all'; 
-	
-	    function displayInitialCards() {
-	        for (let i = 0; i < visibleCount; i++) {
-	            if (cards[i] && isCardVisible(cards[i])) {
-	                cards[i].classList.add('visible');
-	                cards[i].style.display = 'block'; 
-	            }
-	        }
-	    }
-	
-	    function isCardVisible(card) {
-	        const tags = card.getAttribute('data-tags').split(',');
-	        return currentTag === 'all' || tags.includes(currentTag);
-	    }
-	
-	    displayInitialCards();
-	
-	    loadMoreButton.addEventListener('click', function() {
-	        if (!allVisible) {
-	            for (let i = visibleCount; i < cards.length; i++) {
-	                if (cards[i] && isCardVisible(cards[i])) {
-	                    cards[i].classList.add('visible');
-	                    cards[i].style.display = 'block'; 
-	                }
-	            }
-	            visibleCount = cards.length;
-	            loadMoreButton.textContent = '收起更多'; 
-	            allVisible = true; 
-	        } else {
-	            for (let i = 3; i < cards.length; i++) {
-	                if (cards[i]) {
-	                    cards[i].classList.remove('visible');
-	                    cards[i].style.display = 'none'; 
-	                }
-	            }
-	            visibleCount = 3; 
-	            loadMoreButton.textContent = '加载更多'; 
-	            allVisible = false; 
-	        }
-	    });
-	
-	    tagFilter.addEventListener('change', function() {
-	        currentTag = this.value;
-	        for (let card of cards) {
-	            card.classList.remove('visible'); 
-	            card.style.display = 'none';
-	        }
-	
-	        visibleCount = 3; 
-	        loadMoreButton.style.display = 'inline-block';
-	        loadMoreButton.textContent = '加载更多'; 
-	        allVisible = false; 
-	
-	        for (let card of cards) {
-	            if (isCardVisible(card)) {
-	                card.classList.add('visible'); 
-	                card.style.display = 'block';
-	            }
-	        }
-	
-	        const visibleCards = blogList.getElementsByClassName('visible');
-	        for (let i = 0; i < visibleCards.length; i++) {
-	            if (i < visibleCount) {
-	                visibleCards[i].style.display = 'block';
-	            } else {
-	                visibleCards[i].style.display = 'none';
-	            }
-	        }
-	    });
+	   	 const tagFilter = document.getElementById('tag-filter');
+		const blogList = document.getElementById('blog-list');
+		const cards = blogList.getElementsByClassName('card');
+		const loadMoreButton = document.querySelector('.load-more');
+		
+		let visibleCount = 3;
+		let allVisible = false; 
+		let currentTag = 'all'; 
+		
+		function displayInitialCards() {
+		    for (let i = 0; i < visibleCount; i++) {
+		        if (cards[i] && isCardVisible(cards[i])) {
+		            cards[i].classList.add('visible');
+		            cards[i].style.display = 'block'; 
+		        }
+		    }
+		}
+		
+		function isCardVisible(card) {
+		    const tags = card.getAttribute('data-tags').split(',');
+		    return currentTag === 'all' || tags.includes(currentTag);
+		}
+		
+		displayInitialCards();
+		
+		loadMoreButton.addEventListener('click', function() {
+		    if (!allVisible) {
+		        for (let i = visibleCount; i < cards.length; i++) {
+		            if (cards[i] && isCardVisible(cards[i])) {
+		                cards[i].classList.add('visible');
+		            }
+		        }
+		        visibleCount = cards.length;
+		        loadMoreButton.textContent = '收起更多'; 
+		        allVisible = true; 
+		    } else {
+		        for (let i = 3; i < cards.length; i++) {
+		            if (cards[i]) {
+		                cards[i].classList.remove('visible');
+		            }
+		        }
+		        visibleCount = 3; 
+		        loadMoreButton.textContent = '加载更多'; 
+		        allVisible = false; 
+		    }
+		});
+		
+		tagFilter.addEventListener('change', function() {
+		    currentTag = this.value;
+		    for (let card of cards) {
+		        card.classList.remove('visible'); 
+		        card.style.display = 'none';
+		    }
+		
+		    visibleCount = 3; 
+		    loadMoreButton.style.display = 'inline-block';
+		    loadMoreButton.textContent = '加载更多'; 
+		    allVisible = false; 
+		
+		    for (let card of cards) {
+		        if (isCardVisible(card)) {
+		            card.classList.add('visible'); 
+		            card.style.display = 'block';
+		        }
+		    }
+		
+		    const visibleCards = blogList.getElementsByClassName('visible');
+		    for (let i = 0; i < visibleCards.length; i++) {
+		        if (i < visibleCount) {
+		            visibleCards[i].style.display = 'block';
+		        } else {
+		            visibleCards[i].style.display = 'none';
+		        }
+		    }
+		});
+
 	</script>
         </section>
         <section id="links">
