@@ -1,26 +1,26 @@
+let scrollSpeed = 40;
 let currentScroll = window.scrollY; 
 let targetScroll = currentScroll;
-let duration = 2000; // 2 seconds
-let startTime;
+let inertia = 0.005; // 增加惯性值以实现更平滑的滚动
+let isSmoothScrolling = false; // 标记是否在平滑滚动中
 
 function smoothScroll() {
-    const elapsedTime = Date.now() - startTime;
-    const progress = Math.min(elapsedTime / duration, 1); // Clamp to 1
-
-    // 计算当前滚动位置
-    currentScroll = currentScroll + (targetScroll - currentScroll) * progress;
-
+    currentScroll += (targetScroll - currentScroll) * inertia;
     window.scrollTo(0, currentScroll);
 
-    if (progress < 1) {
+    if (Math.abs(targetScroll - currentScroll) > 0.1) {
         requestAnimationFrame(smoothScroll);
+    } else {
+        isSmoothScrolling = false; // 平滑滚动结束
     }
 }
 
 window.addEventListener('wheel', function(event) {
-    event.preventDefault(); 
-    targetScroll += event.deltaY > 0 ? 30 : -30; // 这里的 30 是滚动速度
-    smoothScroll();
+    if (!isSmoothScrolling) { // 仅在未进行平滑滚动时处理正常滚动
+        targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+        smoothScroll();
+        isSmoothScrolling = true; // 设置为正在平滑滚动
+    }
 }, { passive: false });
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -31,8 +31,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             targetScroll = targetElement.offsetTop; 
-            currentScroll = window.scrollY; // 更新当前滚动位置
-            startTime = Date.now(); // 记录开始时间
+            isSmoothScrolling = true; // 设置为正在平滑滚动
             smoothScroll(); 
         }
     });
