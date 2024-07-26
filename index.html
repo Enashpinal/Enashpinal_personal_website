@@ -406,7 +406,7 @@
 	        <button class="load-more">加载更多</button>
 	    </div>
 	<script>
-	   	 const tagFilter = document.getElementById('tag-filter');
+	   	const tagFilter = document.getElementById('tag-filter');
 		const blogList = document.getElementById('blog-list');
 		const cards = blogList.getElementsByClassName('card');
 		const loadMoreButton = document.querySelector('.load-more');
@@ -419,7 +419,6 @@
 		    for (let i = 0; i < visibleCount; i++) {
 		        if (cards[i] && isCardVisible(cards[i])) {
 		            cards[i].classList.add('visible');
-		            cards[i].style.display = 'block'; 
 		        }
 		    }
 		}
@@ -429,25 +428,27 @@
 		    return currentTag === 'all' || tags.includes(currentTag);
 		}
 		
+		function updateVisibleCards() {
+		    for (let i = 0; i < cards.length; i++) {
+		        if (i < visibleCount && isCardVisible(cards[i])) {
+		            cards[i].classList.add('visible');
+		        } else {
+		            cards[i].classList.remove('visible');
+		        }
+		    }
+		}
+		
 		displayInitialCards();
 		
 		loadMoreButton.addEventListener('click', function() {
 		    if (!allVisible) {
-		        for (let i = visibleCount; i < cards.length; i++) {
-		            if (cards[i] && isCardVisible(cards[i])) {
-		                cards[i].classList.add('visible');
-		            }
-		        }
 		        visibleCount = cards.length;
+		        updateVisibleCards();
 		        loadMoreButton.textContent = '收起更多'; 
 		        allVisible = true; 
 		    } else {
-		        for (let i = 3; i < cards.length; i++) {
-		            if (cards[i]) {
-		                cards[i].classList.remove('visible');
-		            }
-		        }
-		        visibleCount = 3; 
+		        visibleCount = 3;
+		        updateVisibleCards();
 		        loadMoreButton.textContent = '加载更多'; 
 		        allVisible = false; 
 		    }
@@ -455,22 +456,12 @@
 		
 		tagFilter.addEventListener('change', function() {
 		    currentTag = this.value;
-		    for (let card of cards) {
-		        card.classList.remove('visible'); 
-		        card.style.display = 'none';
-		    }
-		
 		    visibleCount = 3; 
+		    allVisible = false; 
 		    loadMoreButton.style.display = 'inline-block';
 		    loadMoreButton.textContent = '加载更多'; 
-		    allVisible = false; 
 		
-		    for (let card of cards) {
-		        if (isCardVisible(card)) {
-		            card.classList.add('visible'); 
-		            card.style.display = 'block';
-		        }
-		    }
+		    updateVisibleCards();
 		
 		    const visibleCards = blogList.getElementsByClassName('visible');
 		    for (let i = 0; i < visibleCards.length; i++) {
@@ -481,6 +472,7 @@
 		        }
 		    }
 		});
+
 
 	</script>
         </section>
