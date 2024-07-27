@@ -176,16 +176,7 @@
 		    <span aria-hidden="true" class="hover-text">&nbsp;blogs&nbsp;</span>
 		</button>
             <style>
-	        .container {
-		    margin: 0 auto;
-		    padding: 20px;
-		    backdrop-filter: blur(10px);
-		    background: rgba(255, 255, 255, 0.3);
-		    border-radius: 15px;
-		    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-		    animation: fadeIn 0.5s forwards;
-		    width: auto; 
-		}
+	       
 
 	
 	        @keyframes fadeIn {
@@ -350,7 +341,6 @@
 	            margin-bottom: 20px; 
 	        }
 	    </style>
-	    <div class="container">
 	        <div class="filter">
 	            <label for="tag-filter">选择标签:</label>
 	            <select id="tag-filter">
@@ -417,7 +407,7 @@
 	            </div>
 	        </div>
 	        <button class="load-more">加载更多</button>
-	    </div>
+	
 		<script>
 	    const tagFilter = document.getElementById('tag-filter');
 	    const blogList = document.getElementById('blog-list');
