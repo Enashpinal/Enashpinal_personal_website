@@ -6,6 +6,7 @@
     <title>Enashpinal's website</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script async src="//webviso.yestool.org/js/index.min.js"></script>
 <body>
 	<div class="ccard">
         <div class="cover"></div>
@@ -55,10 +56,10 @@
         playPauseButton.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
-                playPauseButton.innerHTML = '&#9654;'; // Play icon
+                playPauseButton.innerHTML = '&#9654;';
             } else {
                 audio.play();
-                playPauseButton.innerHTML = '&#10074;&#10074;'; // Pause icon
+                playPauseButton.innerHTML = '&#10074;&#10074;'; 
             }
             isPlaying = !isPlaying;
         });
@@ -93,10 +94,11 @@
 	
     <header>
         <div class="profile-picture">
-            <img src="touxiang.jpg" alt="个人头像">
+            <img src="touxiang.jpg" alt="头像">
         </div>
        <h1>Enashpinal's website</h1>
 	<p style="text-shadow: 2px 2px 2px black;color: black;">The jumping blocks at my are my lifelong belief.</p>
+	<p>本页访问人次:<span id="page_pv"></span>  本页访问人数:<span id="page_uv"></span></p>
     </header>
     <nav>
         <ul>
