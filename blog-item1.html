@@ -33,49 +33,1591 @@
             <ul id="nav"></ul>
         </div>
     </div>
-   <script>
+要让这个程序只读取指定片段中的内容，我们可以通过修改 JavaScript 代码来实现。以下是更新后的代码示例，假设我们只想读取特定的 div 中的内容。你可以通过设置一个特定的 id 来指定需要读取的内容区域。
+
+这里是修改后的 HTML 代码：
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            position: fixed; /* 固定位置 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #0056b3; /* 子标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content" id="target-content"> <!-- 指定读取内容的区域 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </div>
+        <div class="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nav = document.getElementById("nav");
-            const sidebar = document.getElementById("sidebar");
-            const headings = document.querySelectorAll("section h1, section h2");
+            const headings = document.querySelectorAll("#target-content h1, #target-content h2"); // 只选择指定区域内的标题
 
             headings.forEach(heading => {
                 const listItem = document.createElement("li");
                 const link = document.createElement("a");
                 link.textContent = heading.textContent;
                 link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
-                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase();
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
 
                 link.onclick = function(e) {
                     e.preventDefault();
                     heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
                 };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
+主要修改点
+指定内容区域：在 .content div 中添加了 id="target-content"，以便在 JavaScript 中明确指定要读取的内容区域。
+选择器更新：在 JavaScript 中，使用 #target-content h1, #target-content h2 选择器，只选择该区域内的 h1 和 h2 标签。
+这样，程序将只读取指定片段中的内容。如果还有其他需求，请告诉我！
+
+我的网站中的文字是显示在<section>中的，所以修改一下代码，另外我的网站对于section已经有了样式，所以你只需要保留右边空出一段距离的样式即可
+
+好的！如果你的文字内容是在 <section> 标签中，并且你希望保留右边的空白样式，可以对代码进行相应的修改。以下是更新后的代码：
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            position: fixed; /* 固定位置 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #0056b3; /* 子标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
+主要修改点
+使用 <section> 标签：将内容区域的 div 替换为 <section class="content">。
+选择器更新：在 JavaScript 中，选择器更新为 section h1, section h2，以确保只读取 <section> 中的标题。
+这样，代码将只会读取 <section> 中的内容，并保留右边的空白样式。如果还有其他需求，请告诉我！
+
+除此之外关于section的所有样式全部删除
+
+好的！以下是更新后的代码，已删除与 <section> 相关的所有样式，只保留了右边的空白样式：
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+        }
+
+        .sidebar {
+            position: fixed; /* 固定位置 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #0056b3; /* 子标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
+主要修改点
+删除与 <section> 相关的所有样式：保留了 .content 类的右边空白样式，删除了其他与 <section> 相关的样式。
+这样，代码将只保留必要的结构，并确保右边有空白。如果还有其他需求，请告诉我！
+
+把这段文字搞进去：
+
+            <h2>没有正版也可以免费定制皮肤头像了！</h2>
+            <p>你是否也想定制一个像这样的mc皮肤头像：</p>
+	<img src="blog/b1/p1.avif" alt="头像">
+	<h3>在这个网站上输入你的正版名可以直接生成：https://www.minecraftpfp.com/</h3>
+	<p>如果你没有正版也没有关系</p>
+	<h3>加我QQ：409894128，把皮肤文件和背景发给我，可以帮你免费定制/修改</h3>
+	<p>背景什么图都可以：</p>
+	<img src="blog/b1/p2.avif" alt="头像">
+ 	<p>另外你可能觉得网站生成的头像有点奇怪，那是因为双层皮肤会被它吃掉一部分，头发就没了，我也可以帮你修改一下，左图是网站生成的，右图是我画的。</p>
+	<img src="blog/b1/p3.avif" alt="头像">
+	<img src="blog/b1/p4.avif" alt="头像">
+	<p>头像定制完全免费哦！</p>
+当然可以！以下是将你提供的文字内容插入到现有代码中的更新版本。我将其放在了主标题下方的适当位置：
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+        }
+
+        .sidebar {
+            position: fixed; /* 固定位置 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #0056b3; /* 子标题颜色 */
+        }
+
+        h3 {
+            margin: 10px 0;
+            color: #0056b3; /* 小标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%; /* 确保图片自适应宽度 */
+            height: auto; /* 保持图片比例 */
+            margin: 10px 0; /* 图片上下间距 */
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <!-- 插入的内容 -->
+            <h2>没有正版也可以免费定制皮肤头像了！</h2>
+            <p>你是否也想定制一个像这样的mc皮肤头像：</p>
+            <img src="blog/b1/p1.avif" alt="头像">
+            <h3>在这个网站上输入你的正版名可以直接生成：https://www.minecraftpfp.com/</h3>
+            <p>如果你没有正版也没有关系</p>
+            <h3>加我QQ：409894128，把皮肤文件和背景发给我，可以帮你免费定制/修改</h3>
+            <p>背景什么图都可以：</p>
+            <img src="blog/b1/p2.avif" alt="头像">
+            <p>另外你可能觉得网站生成的头像有点奇怪，那是因为双层皮肤会被它吃掉一部分，头发就没了，我也可以帮你修改一下，左图是网站生成的，右图是我画的。</p>
+            <img src="blog/b1/p3.avif" alt="头像">
+            <img src="blog/b1/p4.avif" alt="头像">
+            <p>头像定制完全免费哦！</p>
+
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
+更新内容
+将你提供的内容插入到主标题下方，确保格式和样式一致。
+如果你有其他要求或需要进一步修改，请告诉我！
+
+怎么让导航目录菜单显示在指定元素的下方，只有滚动到这个元素才固定在屏幕右上角
+
+要实现导航目录在指定元素下方显示，并在滚动到该元素时固定在屏幕右上角，你可以使用 JavaScript 和 CSS 的结合。以下是实现该功能的步骤：
+
+使用 JavaScript 检测滚动位置：当用户滚动页面时，检查导航目录的位置，并根据滚动位置决定是否固定它。
+
+CSS 设置：为导航目录设置初始样式和固定样式。
+
+以下是更新后的代码示例：
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+        }
+
+        .sidebar {
+            position: absolute; /* 初始为绝对定位 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: position 0.3s; /* 平滑过渡效果 */
+        }
+
+        .fixed {
+            position: fixed; /* 固定在右上角 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+        }
+
+        h1, h2, h3 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%; /* 确保图片自适应宽度 */
+            height: auto; /* 保持图片比例 */
+            margin: 10px 0; /* 图片上下间距 */
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <!-- 插入的内容 -->
+            <h2>没有正版也可以免费定制皮肤头像了！</h2>
+            <p>你是否也想定制一个像这样的mc皮肤头像：</p>
+            <img src="blog/b1/p1.avif" alt="头像">
+            <h3>在这个网站上输入你的正版名可以直接生成：https://www.minecraftpfp.com/</h3>
+            <p>如果你没有正版也没有关系</p>
+            <h3>加我QQ：409894128，把皮肤文件和背景发给我，可以帮你免费定制/修改</h3>
+            <p>背景什么图都可以：</p>
+            <img src="blog/b1/p2.avif" alt="头像">
+            <p>另外你可能觉得网站生成的头像有点奇怪，那是因为双层皮肤会被它吃掉一部分，头发就没了，我也可以帮你修改一下，左图是网站生成的，右图是我画的。</p>
+            <img src="blog/b1/p3.avif" alt="头像">
+            <img src="blog/b1/p4.avif" alt="头像">
+            <p>头像定制完全免费哦！</p>
+
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar" id="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const sidebar = document.getElementById("sidebar");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+            const triggerElement = document.querySelector("h2"); // 触发元素（可以修改为你想要的元素）
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
 
                 listItem.appendChild(link);
                 nav.appendChild(listItem);
             });
 
-            // 拖动功能
-            let isDragging = false;
-            let offsetX, offsetY;
+            window.addEventListener("scroll", function() {
+                const triggerPosition = triggerElement.getBoundingClientRect().bottom; // 获取触发元素底部的位置
+                const sidebarHeight = sidebar.offsetHeight; // 导航目录的高度
 
-            sidebar.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                offsetX = e.clientX - sidebar.getBoundingClientRect().left;
-                offsetY = e.clientY - sidebar.getBoundingClientRect().top;
-                sidebar.style.transition = 'none';
+                if (triggerPosition <= 0) {
+                    sidebar.classList.add("fixed"); // 添加固定类
+                } else {
+                    sidebar.classList.remove("fixed"); // 移除固定类
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+主要修改点
+CSS：
+
+将 .sidebar 的 position 设置为 absolute，并添加了 .fixed 类来使其在滚动时固定在右上角。
+JavaScript：
+
+添加了滚动事件监听器，监测滚动位置。
+使用 getBoundingClientRect() 获取触发元素的位置，判断是否需要添加 fixed 类。
+使用说明
+你可以根据需要修改 triggerElement 变量，选择哪个元素作为触发点。
+当用户滚动到该元素时，导航目录将固定在右上角。
+如果你有其他需求或问题，请随时告诉我！
+
+我要让它显示在header元素的下面
+
+要让导航目录在 header 元素的下方显示，并在滚动到该元素时固定在屏幕右上角，你可以按照以下步骤进行修改：
+
+选择 header 元素 作为触发元素。
+调整 CSS 和 JavaScript 代码，以确保导航目录在 header 下方显示并在滚动时固定。
+下面是更新后的代码示例：
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        header {
+            height: 100px; /* 设置 header 的高度 */
+            background-color: #007BFF; /* header 背景色 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px; /* header 下方的间距 */
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+        }
+
+        .sidebar {
+            position: absolute; /* 初始为绝对定位 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: position 0.3s; /* 平滑过渡效果 */
+        }
+
+        .fixed {
+            position: fixed; /* 固定在右上角 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+        }
+
+        h1, h2, h3 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%; /* 确保图片自适应宽度 */
+            height: auto; /* 保持图片比例 */
+            margin: 10px 0; /* 图片上下间距 */
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>网站标题</h1>
+    </header>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <!-- 插入的内容 -->
+            <h2>没有正版也可以免费定制皮肤头像了！</h2>
+            <p>你是否也想定制一个像这样的mc皮肤头像：</p>
+            <img src="blog/b1/p1.avif" alt="头像">
+            <h3>在这个网站上输入你的正版名可以直接生成：https://www.minecraftpfp.com/</h3>
+            <p>如果你没有正版也没有关系</p>
+            <h3>加我QQ：409894128，把皮肤文件和背景发给我，可以帮你免费定制/修改</h3>
+            <p>背景什么图都可以：</p>
+            <img src="blog/b1/p2.avif" alt="头像">
+            <p>另外你可能觉得网站生成的头像有点奇怪，那是因为双层皮肤会被它吃掉一部分，头发就没了，我也可以帮你修改一下，左图是网站生成的，右图是我画的。</p>
+            <img src="blog/b1/p3.avif" alt="头像">
+            <img src="blog/b1/p4.avif" alt="头像">
+            <p>头像定制完全免费哦！</p>
+
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar" id="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const sidebar = document.getElementById("sidebar");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+            const header = document.querySelector("header"); // 选择 header 元素
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
             });
 
-            document.addEventListener('mousemove', (e) => {
-                if (isDragging) {
-                    sidebar.style.left = `${e.clientX - offsetX}px`;
-                    sidebar.style.top = `${e.clientY - offsetY}px`;
+            window.addEventListener("scroll", function() {
+                const headerHeight = header.offsetHeight; // 获取 header 的高度
+                const sidebarTop = sidebar.getBoundingClientRect().top; // 获取 sidebar 的顶部位置
+
+                if (sidebarTop < headerHeight) {
+                    sidebar.classList.add("fixed"); // 添加固定类
+                } else {
+                    sidebar.classList.remove("fixed"); // 移除固定类
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+主要修改点
+添加 header 元素：
+
+在页面顶部添加一个 header 元素，设置其高度和样式。
+JavaScript：
+
+使用 header.offsetHeight 获取 header 的高度，以便在滚动时判断导航目录是否应该固定。
+CSS：
+
+为 header 设置样式，使其在页面顶部显示，并与导航目录保持一定的间距。
+使用说明
+当用户滚动页面并到达 header 元素的底部时，导航目录将固定在右上角。
+如果你有其他需求或问题，请随时告诉我！
+
+你这没用啊，这个导航菜单依然显示在了header元素上，盖住了header
+
+要确保导航菜单显示在 header 元素下方，而不是覆盖它，可以通过调整 CSS 和 JavaScript 来实现。以下是修改后的代码示例，确保导航菜单在 header 下方，并在滚动时固定在右上角。
+
+修改后的代码示例
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        header {
+            height: 100px; /* 设置 header 的高度 */
+            background-color: #007BFF; /* header 背景色 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px; /* header 下方的间距 */
+            position: relative; /* 使其在导航目录下方 */
+            z-index: 1; /* 确保 header 在导航目录之上 */
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+        }
+
+        .sidebar {
+            position: absolute; /* 初始为绝对定位 */
+            top: 120px; /* 距离 header 底部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: position 0.3s; /* 平滑过渡效果 */
+        }
+
+        .fixed {
+            position: fixed; /* 固定在右上角 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+        }
+
+        h1, h2, h3 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%; /* 确保图片自适应宽度 */
+            height: auto; /* 保持图片比例 */
+            margin: 10px 0; /* 图片上下间距 */
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>网站标题</h1>
+    </header>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <!-- 插入的内容 -->
+            <h2>没有正版也可以免费定制皮肤头像了！</h2>
+            <p>你是否也想定制一个像这样的mc皮肤头像：</p>
+            <img src="blog/b1/p1.avif" alt="头像">
+            <h3>在这个网站上输入你的正版名可以直接生成：https://www.minecraftpfp.com/</h3>
+            <p>如果你没有正版也没有关系</p>
+            <h3>加我QQ：409894128，把皮肤文件和背景发给我，可以帮你免费定制/修改</h3>
+            <p>背景什么图都可以：</p>
+            <img src="blog/b1/p2.avif" alt="头像">
+            <p>另外你可能觉得网站生成的头像有点奇怪，那是因为双层皮肤会被它吃掉一部分，头发就没了，我也可以帮你修改一下，左图是网站生成的，右图是我画的。</p>
+            <img src="blog/b1/p3.avif" alt="头像">
+            <img src="blog/b1/p4.avif" alt="头像">
+            <p>头像定制完全免费哦！</p>
+
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar" id="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const sidebar = document.getElementById("sidebar");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
+            });
+
+            window.addEventListener("scroll", function() {
+                const sidebarTop = sidebar.getBoundingClientRect().top; // 获取 sidebar 的顶部位置
+
+                if (sidebarTop < 20) { // 当 sidebar 到达顶部时
+                    sidebar.classList.add("fixed"); // 添加固定类
+                } else {
+                    sidebar.classList.remove("fixed"); // 移除固定类
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+主要修改点
+调整 sidebar 的位置：
+
+将 sidebar 的 top 属性设置为 120px，确保它位于 header 下方。
+header 的 z-index：
+
+为 header 添加 z-index: 1，确保它在导航目录之上。
+滚动事件的判断：
+
+修改滚动事件的判断条件，确保在滚动到导航目录时才将其固定。
+使用说明
+当用户滚动页面时，导航菜单将固定在右上角，而不会覆盖 header 元素。
+如果你还有其他需求或问题，请随时告诉我！
+
+现在把侧边栏设计成可以移动的样式
+
+要将侧边栏设计成可移动的样式，可以使用 JavaScript 来实现拖动功能。下面是一个修改后的代码示例，添加了可拖动的侧边栏功能。
+
+修改后的代码示例
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动导航目录</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        header {
+            height: 100px; /* 设置 header 的高度 */
+            background-color: #007BFF; /* header 背景色 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px; /* header 下方的间距 */
+            position: relative; /* 使其在导航目录下方 */
+            z-index: 1; /* 确保 header 在导航目录之上 */
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 300px; /* 增加右边的空白 */
+            padding: 20px;
+        }
+
+        .sidebar {
+            position: absolute; /* 初始为绝对定位 */
+            top: 120px; /* 距离 header 底部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 220px;
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8); /* 毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 背景模糊 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            cursor: move; /* 鼠标指针样式 */
+            transition: position 0.3s; /* 平滑过渡效果 */
+        }
+
+        .fixed {
+            position: fixed; /* 固定在右上角 */
+            top: 20px; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+        }
+
+        h1, h2, h3 {
+            margin: 10px 0;
+            color: #007BFF; /* 主标题颜色 */
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%; /* 确保图片自适应宽度 */
+            height: auto; /* 保持图片比例 */
+            margin: 10px 0; /* 图片上下间距 */
+        }
+
+        ul {
+            list-style-type: none; /* 去掉默认的列表样式 */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0; /* 减少列表项之间的间距 */
+        }
+
+        a {
+            display: block; /* 使链接占满整个列表项 */
+            padding: 8px 12px; /* 调整链接内边距 */
+            border-radius: 5px;
+            text-decoration: none; /* 去掉下划线 */
+            color: #007BFF;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: rgba(0, 123, 255, 0.1); /* 悬停背景 */
+            color: #0056b3; /* 悬停文字颜色 */
+        }
+
+        a.active {
+            background: rgba(0, 123, 255, 0.2); /* 激活链接背景 */
+            color: #0056b3; /* 激活链接文字颜色 */
+        }
+
+        .indent { 
+            padding-left: 20px; /* 为子标题添加缩进 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>网站标题</h1>
+    </header>
+    <div class="container">
+        <section class="content"> <!-- 使用 <section> 标签 -->
+            <h1>主标题</h1>
+            <p><!-- 这里是关于主标题的描述或内容 --></p>
+            
+            <!-- 插入的内容 -->
+            <h2>没有正版也可以免费定制皮肤头像了！</h2>
+            <p>你是否也想定制一个像这样的mc皮肤头像：</p>
+            <img src="blog/b1/p1.avif" alt="头像">
+            <h3>在这个网站上输入你的正版名可以直接生成：https://www.minecraftpfp.com/</h3>
+            <p>如果你没有正版也没有关系</p>
+            <h3>加我QQ：409894128，把皮肤文件和背景发给我，可以帮你免费定制/修改</h3>
+            <p>背景什么图都可以：</p>
+            <img src="blog/b1/p2.avif" alt="头像">
+            <p>另外你可能觉得网站生成的头像有点奇怪，那是因为双层皮肤会被它吃掉一部分，头发就没了，我也可以帮你修改一下，左图是网站生成的，右图是我画的。</p>
+            <img src="blog/b1/p3.avif" alt="头像">
+            <img src="blog/b1/p4.avif" alt="头像">
+            <p>头像定制完全免费哦！</p>
+
+            <h2>步骤 1: 结构设计</h2>
+            <p><!-- 这里是关于步骤 1 的详细描述 --></p>
+            
+            <h2>步骤 2: 样式设置</h2>
+            <p><!-- 这里是关于步骤 2 的详细描述 --></p>
+            
+            <h2>步骤 3: 自动生成导航目录</h2>
+            <p><!-- 这里是关于步骤 3 的详细描述 --></p>
+            
+            <h2>步骤 4: ID 处理</h2>
+            <p><!-- 这里是关于步骤 4 的详细描述 --></p>
+            
+            <h1>标题 1</h1>
+            <p><!-- 这里是关于标题 1 的内容 --></p>
+            <h2 class="subheading">子标题 1.1</h2>
+            <p><!-- 这里是关于子标题 1.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 1.2</h2>
+            <p><!-- 这里是关于子标题 1.2 的详细内容 --></p>
+            
+            <h1>标题 2</h1>
+            <p><!-- 这里是关于标题 2 的内容 --></p>
+            <h2 class="subheading">子标题 2.1</h2>
+            <p><!-- 这里是关于子标题 2.1 的详细内容 --></p>
+            <h2 class="subheading">子标题 2.2</h2>
+            <p><!-- 这里是关于子标题 2.2 的详细内容 --></p>
+        </section>
+        <div class="sidebar" id="sidebar">
+            <h2>导航目录</h2>
+            <ul id="nav"></ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.getElementById("nav");
+            const sidebar = document.getElementById("sidebar");
+            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+
+            headings.forEach(heading => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.textContent = heading.textContent;
+                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: "smooth" });
+                    
+                    // 移除所有链接的 active 类
+                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    // 为当前链接添加 active 类
+                    link.classList.add('active');
+                };
+
+                if (heading.tagName === "H2") {
+                    link.classList.add("indent"); // 为子标题链接添加缩进
+                }
+
+                listItem.appendChild(link);
+                nav.appendChild(listItem);
+            });
+
+            window.addEventListener("scroll", function() {
+                const sidebarTop = sidebar.getBoundingClientRect().top; // 获取 sidebar 的顶部位置
+
+                if (sidebarTop < 20) { // 当 sidebar 到达顶部时
+                    sidebar.classList.add("fixed"); // 添加固定类
+                } else {
+                    sidebar.classList.remove("fixed"); // 移除固定类
                 }
             });
 
-            document.addEventListener('mouseup', () => {
+            // 拖动功能
+            let isDragging = false;
+            let offset = { x: 0, y: 0 };
+
+            sidebar.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                offset.x = e.clientX - sidebar.getBoundingClientRect().left;
+                offset.y = e.clientY - sidebar.getBoundingClientRect().top;
+                sidebar.style.transition = 'none'; // 禁用过渡效果
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    sidebar.style.position = 'absolute';
+                    sidebar.style.left = (e.clientX - offset.x) + 'px';
+                    sidebar.style.top = (e.clientY - offset.y) + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
                 isDragging = false;
-                sidebar.style.transition = ''; 
+                sidebar.style.transition = ''; // 恢复过渡效果
             });
         });
     </script>
