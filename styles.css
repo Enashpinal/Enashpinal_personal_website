@@ -1,3 +1,21 @@
+a {
+    display: block; 
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none; 
+    color: #007BFF;
+    transition: background 0.3s, color 0.3s;
+}
+
+a:hover {
+    background: rgba(0, 123, 255, 0.1);
+    color: #0056b3; 
+}
+
+a.active {
+    background: rgba(0, 123, 255, 0.2); 
+    color: #0056b3; 
+}
 .container {
     display: flex;
 }
