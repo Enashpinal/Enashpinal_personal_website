@@ -33,10 +33,15 @@
             <ul id="nav"></ul>
         </div>
     </div>
-	<script>
+	 <button class="toggle-button" id="toggleButton">☰</button> <!-- 添加切换按钮 -->
+    
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nav = document.getElementById("nav");
             const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+            const sidebar = document.getElementById("sidebar");
+            const content = document.querySelector(".content");
+            const toggleButton = document.getElementById("toggleButton");
 
             headings.forEach(heading => {
                 const listItem = document.createElement("li");
@@ -63,6 +68,21 @@
                 listItem.appendChild(link);
                 nav.appendChild(listItem);
             });
+
+            // 切换导航目录的显示和隐藏
+            toggleButton.addEventListener("click", function() {
+                if (sidebar.style.display === "none" || sidebar.style.display === "") {
+                    sidebar.style.display = "block"; // 显示导航
+                    content.style.marginRight = "240px"; // 空出右侧空间
+                } else {
+                    sidebar.style.display = "none"; // 隐藏导航
+                    content.style.marginRight = "0"; // 取消右侧空间
+                }
+            });
+
+            // 初始化时隐藏导航
+            sidebar.style.display = "none";
+            content.style.marginRight = "0"; // 取消右侧空间
         });
     </script>
     </main>
