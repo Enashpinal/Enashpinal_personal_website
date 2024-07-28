@@ -33,7 +33,7 @@
             <ul id="nav"></ul>
         </div>
     </div>
- <script>
+   <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nav = document.getElementById("nav");
             const sidebar = document.getElementById("sidebar");
@@ -49,8 +49,6 @@
                 link.onclick = function(e) {
                     e.preventDefault();
                     heading.scrollIntoView({ behavior: "smooth" });
-                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                    link.classList.add('active');
                 };
 
                 listItem.appendChild(link);
@@ -65,7 +63,7 @@
                 isDragging = true;
                 offsetX = e.clientX - sidebar.getBoundingClientRect().left;
                 offsetY = e.clientY - sidebar.getBoundingClientRect().top;
-                sidebar.classList.add('dragging');
+                sidebar.style.transition = 'none';
             });
 
             document.addEventListener('mousemove', (e) => {
@@ -77,7 +75,7 @@
 
             document.addEventListener('mouseup', () => {
                 isDragging = false;
-                sidebar.classList.remove('dragging');
+                sidebar.style.transition = ''; 
             });
         });
     </script>
