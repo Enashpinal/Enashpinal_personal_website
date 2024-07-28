@@ -33,46 +33,51 @@
             <ul id="nav"></ul>
         </div>
     </div>
-  <script>
+ <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nav = document.getElementById("nav");
             const sidebar = document.getElementById("sidebar");
-            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+            const headings = document.querySelectorAll("section h1, section h2");
 
             headings.forEach(heading => {
                 const listItem = document.createElement("li");
                 const link = document.createElement("a");
                 link.textContent = heading.textContent;
                 link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
-
-                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
+                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase();
 
                 link.onclick = function(e) {
                     e.preventDefault();
                     heading.scrollIntoView({ behavior: "smooth" });
-                    
-                    // 移除所有链接的 active 类
                     document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                    // 为当前链接添加 active 类
                     link.classList.add('active');
                 };
-
-                if (heading.tagName === "H2") {
-                    link.classList.add("indent"); // 为子标题链接添加缩进
-                }
 
                 listItem.appendChild(link);
                 nav.appendChild(listItem);
             });
 
-            window.addEventListener("scroll", function() {
-                const sidebarTop = sidebar.getBoundingClientRect().top; // 获取 sidebar 的顶部位置
+            // 拖动功能
+            let isDragging = false;
+            let offsetX, offsetY;
 
-                if (sidebarTop < 20) { // 当 sidebar 到达顶部时
-                    sidebar.classList.add("fixed"); // 添加固定类
-                } else {
-                    sidebar.classList.remove("fixed"); // 移除固定类
+            sidebar.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - sidebar.getBoundingClientRect().left;
+                offsetY = e.clientY - sidebar.getBoundingClientRect().top;
+                sidebar.classList.add('dragging');
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    sidebar.style.left = `${e.clientX - offsetX}px`;
+                    sidebar.style.top = `${e.clientY - offsetY}px`;
                 }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                sidebar.classList.remove('dragging');
             });
         });
     </script>
