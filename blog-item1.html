@@ -13,8 +13,8 @@
         <h1>MINECRAFT | 没有正版也可以免费定制皮肤头像了！</h1>
     </header>
     <main>
-         <div class="container">
-        <section class="content"> 
+         <div>
+        <section> 
             <h2>没有正版也可以免费定制皮肤头像了！</h2>
             <p>你是否也想定制一个像这样的mc皮肤头像：</p>
             <img src="blog/b1/p1.avif" alt="头像">
@@ -28,63 +28,6 @@
             <img src="blog/b1/p4.avif" alt="头像">
             <p>头像定制完全免费哦！</p>
         </section>
-        <div class="sidebar">
-            <h2>导航目录</h2>
-            <ul id="nav"></ul>
-        </div>
-    </div>
-	 <button class="toggle-button" id="toggleButton">☰</button> <!-- 添加切换按钮 -->
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const nav = document.getElementById("nav");
-            const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
-            const sidebar = document.getElementById("sidebar");
-            const content = document.querySelector(".content");
-            const toggleButton = document.getElementById("toggleButton");
-
-            headings.forEach(heading => {
-                const listItem = document.createElement("li");
-                const link = document.createElement("a");
-                link.textContent = heading.textContent;
-                link.href = `#${heading.textContent.replace(/\s+/g, '-').toLowerCase()}`;
-
-                heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase(); // 为每个标题添加 ID
-
-                link.onclick = function(e) {
-                    e.preventDefault();
-                    heading.scrollIntoView({ behavior: "smooth" });
-                    
-                    // 移除所有链接的 active 类
-                    document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                    // 为当前链接添加 active 类
-                    link.classList.add('active');
-                };
-
-                if (heading.tagName === "H2") {
-                    link.classList.add("indent"); // 为子标题链接添加缩进
-                }
-
-                listItem.appendChild(link);
-                nav.appendChild(listItem);
-            });
-
-            // 切换导航目录的显示和隐藏
-            toggleButton.addEventListener("click", function() {
-                if (sidebar.style.display === "none" || sidebar.style.display === "") {
-                    sidebar.style.display = "block"; // 显示导航
-                    content.style.marginRight = "240px"; // 空出右侧空间
-                } else {
-                    sidebar.style.display = "none"; // 隐藏导航
-                    content.style.marginRight = "0"; // 取消右侧空间
-                }
-            });
-
-            // 初始化时隐藏导航
-            sidebar.style.display = "none";
-            content.style.marginRight = "0"; // 取消右侧空间
-        });
-    </script>
     </main>
     <footer>
         <p>&copy; 2024 Enashpinal_YEE. 保留所有权利。</p>
