@@ -36,7 +36,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nav = document.getElementById("nav");
+            const sidebar = document.getElementById("sidebar");
             const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
+            const header = document.querySelector("header"); // 选择 header 元素
 
             headings.forEach(heading => {
                 const listItem = document.createElement("li");
@@ -49,19 +51,28 @@
                 link.onclick = function(e) {
                     e.preventDefault();
                     heading.scrollIntoView({ behavior: "smooth" });
-                    
-                    // 移除所有链接的 active 类
+                   
                     document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                    // 为当前链接添加 active 类
                     link.classList.add('active');
                 };
 
                 if (heading.tagName === "H2") {
-                    link.classList.add("indent"); // 为子标题链接添加缩进
+                    link.classList.add("indent"); 
                 }
 
                 listItem.appendChild(link);
                 nav.appendChild(listItem);
+            });
+
+            window.addEventListener("scroll", function() {
+                const headerHeight = header.offsetHeight; 
+                const sidebarTop = sidebar.getBoundingClientRect().top;
+
+                if (sidebarTop < headerHeight) {
+                    sidebar.classList.add("fixed");
+                } else {
+                    sidebar.classList.remove("fixed"); 
+                }
             });
         });
     </script>
