@@ -36,7 +36,6 @@
 	<script>
         document.addEventListener("DOMContentLoaded", function() {
             const nav = document.getElementById("nav");
-            const sidebar = document.getElementById("sidebar");
             const headings = document.querySelectorAll("section h1, section h2"); // 选择 <section> 中的标题
 
             headings.forEach(heading => {
@@ -63,40 +62,6 @@
 
                 listItem.appendChild(link);
                 nav.appendChild(listItem);
-            });
-
-            window.addEventListener("scroll", function() {
-                const sidebarTop = sidebar.getBoundingClientRect().top; // 获取 sidebar 的顶部位置
-
-                if (sidebarTop < 20) { // 当 sidebar 到达顶部时
-                    sidebar.classList.add("fixed"); // 添加固定类
-                } else {
-                    sidebar.classList.remove("fixed"); // 移除固定类
-                }
-            });
-
-            // 拖动功能
-            let isDragging = false;
-            let offset = { x: 0, y: 0 };
-
-            sidebar.addEventListener('mousedown', function(e) {
-                isDragging = true;
-                offset.x = e.clientX - sidebar.getBoundingClientRect().left;
-                offset.y = e.clientY - sidebar.getBoundingClientRect().top;
-                sidebar.style.transition = 'none'; // 禁用过渡效果
-            });
-
-            document.addEventListener('mousemove', function(e) {
-                if (isDragging) {
-                    sidebar.style.position = 'absolute';
-                    sidebar.style.left = (e.clientX - offset.x) + 'px';
-                    sidebar.style.top = (e.clientY - offset.y) + 'px';
-                }
-            });
-
-            document.addEventListener('mouseup', function() {
-                isDragging = false;
-                sidebar.style.transition = ''; // 恢复过渡效果
             });
         });
     </script>
