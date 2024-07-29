@@ -406,7 +406,7 @@ nav {
   border-radius: 8px;
   position: fixed;
   top: 10px;
-  left: 20px; 
+  left: 20px;
   right: 20px;
   padding: 15px 20px;
   display: flex;
@@ -417,7 +417,7 @@ nav {
 }
 
 nav .title {
-  font-size: 28px;
+  font-size: 32px;
   color: white;
   text-shadow: 0 0 8px white;
 }
@@ -436,12 +436,13 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: white; 
-  padding: 10px;
+  color: white;
+  padding: 12px 20px;
+  font-size: 18px;
   position: relative;
   overflow: hidden;
   transition: color 0.3s ease, text-shadow 0.3s ease;
-  text-shadow: 0 0 4px white; 
+  text-shadow: 0 0 4px white;
 }
 
 nav ul li a:hover {
