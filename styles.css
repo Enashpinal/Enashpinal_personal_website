@@ -199,11 +199,13 @@ img {
 
 .console {
   width: 100%;
-  height: calc(100% - 30px);
+  height: auto; 
+  max-height: calc(100% - 30px);  
   background-color: #000;
   color: #fff;
   overflow: auto;
 }
+
 
 .console pre {
   margin: 0;
