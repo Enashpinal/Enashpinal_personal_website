@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【前端开发『原创』】几行JavaScript实现平滑的网页滚动</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="sidebar-header">目录</div>
+        <div class="sidebar-nav" id="nav-list"></div>
+    </div>
+    <div id="toggle-btn"></div>
+    <header>
+        <a href="index.html" class="button">回到主菜单</a>
+        <h1>【前端开发『原创』】几行JavaScript实现平滑的网页滚动</h1>
+    </header>
+    <main>
+         <div>
+        <section> 
+          
+<h2>效果展示</h2>
+<p><img src="blog/b7/img.webp" alt="展示" /></p>
+          
+<h2>实现过程</h2>
+<ol>
+    <li>
+        <strong style="color: red;">检测鼠标滚动</strong>
+        <p>首先，我们需要检测你的滚动动作。通过 <code>wheel</code> 事件，我们可以检测到你的鼠标滚动状态，从而知道是向上还是向下滚动、滚动了多少。</p>
+    </li>
+    <li>
+        <strong style="color: red;">更新目标位置</strong>
+        <p>当检测到滚动状态后，我们可以根据你滚动的动作来更新目标位置。如果你在向下滚动，就把目标位置往下移；如果你在向上滚动，目标位置就往上移。</p>
+    </li>
+    <li>
+        <strong style="color: red;">平滑过渡</strong>
+        <p>为了让滚动看起来更平缓，我们需要在你当前的位置和目标位置之间进行一些过渡。说白了就是减缓滚动速度，随着你滚动时间的变化慢慢变快。惯性大小通过以下公式进行计算：</p>
+        <p><code>currentScroll += (targetScroll - currentScroll) * inertia;</code></p>
+        <p><strong>currentScroll</strong>: 当前的滚动位置。<br>
+        <strong>targetScroll</strong>: 目标滚动位置，即希望滚动到的位置。<br>
+        <strong>inertia</strong>: 惯性因子，通常是一个介于 0 和 1 之间的值，用于控制滚动的速度和流畅度。</p>
+    </li>
+    <li>
+        <strong style="color: red;">动画效果</strong>
+        <p>我们用 <code>requestAnimationFrame</code>（一个浏览器提供的API）来处理动画。这个方法会在浏览器下次重绘之前调用我们的函数，让动画看起来更流畅。在每一帧更新当前滚动的位置，然后用 <code>window.scrollTo</code> 把页面滚动到目标位置。</p>
+    </li>
+    <li>
+        <strong style="color: red;">停止条件</strong>
+        <p>当你没有滚动的时候。也就是说当前滚动位置和目标位置之间的差距很小，我们就可以关闭动画效果，这样就能避免不必要的计算，提升性能。</p>
+    </li>
+</ol>
+
+<h2>上代码！</h2>
+<p>听起来挺复杂，其实实现效果还是挺简单的</p>
+
+<div class="container"> 
+  <div class="window"> 
+    <div class="window-title">
+      <p>JavaScript code</p>
+      <div class="window-buttons">
+        <div class="window-button fullscreen"></div>
+        <div class="window-button reduce"></div>
+        <div class="window-button close"></div>
+      </div>
+    </div>
+    <div class="console">
+<pre><code>
+  let scrollSpeed = 40; // 这个值越大滚动速度越快，可以自行调整
+
+let currentScroll = window.scrollY;
+let targetScroll = currentScroll;
+let inertia = 0.001;  // 惯性因子，前面有讲到，建议别改
+
+function smoothScroll() {
+    currentScroll += (targetScroll - currentScroll) * inertia;
+    window.scrollTo(0, currentScroll);
+    if (Math.abs(targetScroll - currentScroll) > 0.1) {
+        requestAnimationFrame(smoothScroll);
+    }
+}
+
+window.addEventListener('wheel', function(event) {
+    event.preventDefault();
+    targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+    smoothScroll();
+}, { passive: false });
+</code></pre>
+    </div>
+  </div>
+</div>
+<div class="container"> 
+  <div class="window"> 
+    <div class="window-title">
+      <p>HTML code</p>
+      <div class="window-buttons">
+        <div class="window-button fullscreen"></div>
+        <div class="window-button reduce"></div>
+        <div class="window-button close"></div>
+      </div>
+    </div>
+    <div class="console">
+<pre><code>
+<script src="smoothScroll.js"></script>
+</code></pre>
+    </div>
+  </div>
+</div>
+<h2>对于特殊情况</h2>
+<p>如果你的网页里有锚点导航，那么直接使用上面这段代码的话会出问题，锚点导航会失效，这时候我们再添加一段JavaScript代码就好了。</p>
+
+<h3>实现过程</h3>
+<ol>
+    <li>
+        <strong style="color: red;">选择链接</strong>
+        <p><code>document.querySelectorAll('a[href^="#"]')</code> 这行代码选择所有 href 属性以 <code>#</code> 开头的链接，也就是提取锚点导航链接。</p>
+    </li>
+    <li>
+        <strong style="color: red;">遍历链接</strong>
+        <p><code>.forEach(anchor => {</code> 对每个选择到的链接进行遍历，并为每个链接添加点击事件监听器（事件监听器用于检测你有没有点击锚点导航链接）。</p>
+    </li>
+    <li>
+        <strong style="color: red;">添加事件监听器</strong>
+        <p><code>anchor.addEventListener('click', function(e) {</code> 当检测到链接被点击时，触发这个函数。</p>
+    </li>
+    <li>
+        <strong style="color: red;">阻止默认行为</strong>
+        <p><code>e.preventDefault();</code> 阻止浏览器的默认行为，防止页面直接跳转到锚点指向的位置。</p>
+    </li>
+    <li>
+        <strong style="color: red;">获取目标元素</strong>
+        <p><code>const targetId = this.getAttribute('href');</code><br>
+        <code>const targetElement = document.querySelector(targetId);</code> 获取你点击的链接的 <code>href</code> 属性值（就是目标锚点的 ID），并通过这个 ID 找到对应的元素。</p>
+    </li>
+    <li>
+        <strong style="color: red;">检查目标元素是否存在</strong>
+        <p><code>if (targetElement) {</code> 检查目标元素是否存在，如果存在，继续执行程序。</p>
+    </li>
+    <li>
+        <strong style="color: red;">设置滚动参数</strong>
+        <p><code>targetScroll = targetElement.offsetTop;</code><br>
+        <code>const startScroll = currentScroll;</code><br>
+        <code>const distance = targetScroll - startScroll;</code><br>
+        <code>const duration = 300;</code><br>
+        <code>const startTime = performance.now();</code><br>
+        <strong>targetScroll</strong>: 目标元素的垂直位置。<br>
+        <strong>startScroll</strong>: 当前的滚动位置。<br>
+        <strong>distance</strong>: 从当前滚动位置到目标位置的距离。<br>
+        <strong>duration</strong>: 动画持续时间（300毫秒）。<br>
+        <strong>startTime</strong>: 动画开始时间。</p>
+    </li>
+    <li>
+        <strong style="color: red;">定义动画函数</strong>
+        <p><code>function animateScroll(currentTime) {</code> 定义一个滚动的动画函数。</p>
+    </li>
+    <li>
+        <strong style="color: red;">计算动画进度</strong>
+        <p><code>const elapsed = currentTime - startTime;</code><br>
+        <code>const progress = Math.min(elapsed / duration, 1);</code><br>
+        <code>const newScroll = startScroll + distance * progress;</code><br>
+        <strong>elapsed</strong>: 从开始滚动到当前的时间。<br>
+        <strong>progress</strong>: 动画的进度，在 0 和 1 之间。<br>
+        <strong>newScroll</strong>: 根据进度计算新的滚动位置。</p>
+    </li>
+    <li>
+        <strong style="color: red;">执行滚动</strong>
+        <p><code>window.scrollTo(0, newScroll);</code> 使用 <code>window.scrollTo</code> 方法滚动到新的位置。</p>
+    </li>
+    <li>
+        <strong style="color: red;">检查是否完成滚动</strong>
+        <p><code>if (progress < 1) { requestAnimationFrame(animateScroll); } else { currentScroll = newScroll; }</code> 如果动画还未完成，使用 <code>requestAnimationFrame</code> 继续调用 <code>animateScroll</code>。如果动画完成，更新 <strong>currentScroll</strong> 为新的滚动位置。</p>
+    </li>
+    <li>
+        <strong style="color: red;">启动！！</strong>
+        <p><code>requestAnimationFrame(animateScroll);</code> 开始动画。</p>
+    </li>
+</ol>
+
+<div class="container"> 
+  <div class="window"> 
+    <div class="window-title">
+      <p>JavaScript code</p>
+      <div class="window-buttons">
+        <div class="window-button fullscreen"></div>
+        <div class="window-button reduce"></div>
+        <div class="window-button close"></div>
+      </div>
+    </div>
+    <div class="console">
+<pre><code>
+let scrollSpeed = 40;
+
+let currentScroll = window.scrollY;
+
+let targetScroll = currentScroll;
+
+let inertia = 0.001;
+
+function smoothScroll() {
+    currentScroll += (targetScroll - currentScroll) * inertia;
+    window.scrollTo(0, currentScroll);
+    if (Math.abs(targetScroll - currentScroll) > 0.1) {
+        requestAnimationFrame(smoothScroll);
+    }
+}
+
+window.addEventListener('wheel', function(event) {
+    event.preventDefault();
+    targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+    smoothScroll();
+}, { passive: false });
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetScroll = targetElement.offsetTop;
+            const startScroll = currentScroll;
+            const distance = targetScroll - startScroll;
+            const duration = 300;
+            const startTime = performance.now();
+
+            function animateScroll(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const newScroll = startScroll + distance * progress;
+
+                window.scrollTo(0, newScroll);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateScroll);
+                } else {
+                    currentScroll = newScroll;
+                }
+            }
+
+            requestAnimationFrame(animateScroll);
+        }
+    });
+});
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<h2>感谢阅读！</h2>
+<p>码字不易，转载请注明出处</p>
+
+
+          
+        </section>
+             <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const navList = document.getElementById('nav-list');
+
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('show');
+            });
+
+            function generateNav() {
+                const headings = document.querySelectorAll('h1, h2, h3');
+                let navHtml = '';
+
+                headings.forEach(heading => {
+                    const id = heading.id || heading.textContent.replace(/\s+/g, '-').toLowerCase();
+                    heading.id = id;
+
+                    let indentClass = '';
+                    if (heading.tagName === 'H2') {
+                        indentClass = 'indent-h2';
+                    } else if (heading.tagName === 'H3') {
+                        indentClass = 'indent-h3';
+                    }
+
+                    navHtml += `<a href="#${id}" class="${indentClass}">${heading.textContent}</a>`;
+                });
+
+                navList.innerHTML = navHtml;
+            }
+
+            generateNav();
+        });
+    </script>
+    </main>
+    <footer>
+        <p>Copyright &copy; 2024 Enashpinal_YEE rights reserved.</p>
+    </footer>
+</body>
+</html>
