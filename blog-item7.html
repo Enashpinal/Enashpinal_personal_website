@@ -101,7 +101,7 @@ window.addEventListener('wheel', function(event) {
     </div>
     <div class="console">
 <pre><code>
-<script src="smoothScroll.js"></script>
+&lt;script src=&quot;smoothScroll.js&quot;&gt;&lt;/script&gt;
 </code></pre>
     </div>
   </div>
@@ -113,28 +113,28 @@ window.addEventListener('wheel', function(event) {
 <ol>
     <li>
         <strong style="color: red;">选择链接</strong>
-        <p><code>document.querySelectorAll('a[href^="#"]')</code> 这行代码选择所有 href 属性以 <code>#</code> 开头的链接，也就是提取锚点导航链接。</p>
+        <p><code>document.querySelectorAll('a[href^="#"]')</code> <br> <br>这行代码选择所有 href 属性以 <code>#</code> 开头的链接，也就是提取锚点导航链接。</p>
     </li>
     <li>
         <strong style="color: red;">遍历链接</strong>
-        <p><code>.forEach(anchor => {</code> 对每个选择到的链接进行遍历，并为每个链接添加点击事件监听器（事件监听器用于检测你有没有点击锚点导航链接）。</p>
+        <p><code>.forEach(anchor => {</code>  <br> <br>对每个选择到的链接进行遍历，并为每个链接添加点击事件监听器（事件监听器用于检测你有没有点击锚点导航链接）。</p>
     </li>
     <li>
         <strong style="color: red;">添加事件监听器</strong>
-        <p><code>anchor.addEventListener('click', function(e) {</code> 当检测到链接被点击时，触发这个函数。</p>
+        <p><code>anchor.addEventListener('click', function(e) {</code>  <br> <br>当检测到链接被点击时，触发这个函数。</p>
     </li>
     <li>
         <strong style="color: red;">阻止默认行为</strong>
-        <p><code>e.preventDefault();</code> 阻止浏览器的默认行为，防止页面直接跳转到锚点指向的位置。</p>
+        <p><code>e.preventDefault();</code>  <br> <br>阻止浏览器的默认行为，防止页面直接跳转到锚点指向的位置。</p>
     </li>
     <li>
         <strong style="color: red;">获取目标元素</strong>
         <p><code>const targetId = this.getAttribute('href');</code><br>
-        <code>const targetElement = document.querySelector(targetId);</code> 获取你点击的链接的 <code>href</code> 属性值（就是目标锚点的 ID），并通过这个 ID 找到对应的元素。</p>
+        <code>const targetElement = document.querySelector(targetId);</code>  <br> <br>获取你点击的链接的 <code>href</code> 属性值（就是目标锚点的 ID），并通过这个 ID 找到对应的元素。</p>
     </li>
     <li>
         <strong style="color: red;">检查目标元素是否存在</strong>
-        <p><code>if (targetElement) {</code> 检查目标元素是否存在，如果存在，继续执行程序。</p>
+        <p><code>if (targetElement) {</code>  <br> <br>检查目标元素是否存在，如果存在，继续执行程序。</p>
     </li>
     <li>
         <strong style="color: red;">设置滚动参数</strong>
@@ -151,7 +151,7 @@ window.addEventListener('wheel', function(event) {
     </li>
     <li>
         <strong style="color: red;">定义动画函数</strong>
-        <p><code>function animateScroll(currentTime) {</code> 定义一个滚动的动画函数。</p>
+        <p><code>function animateScroll(currentTime) {</code>  <br> <br>定义一个滚动的动画函数。</p>
     </li>
     <li>
         <strong style="color: red;">计算动画进度</strong>
@@ -164,15 +164,15 @@ window.addEventListener('wheel', function(event) {
     </li>
     <li>
         <strong style="color: red;">执行滚动</strong>
-        <p><code>window.scrollTo(0, newScroll);</code> 使用 <code>window.scrollTo</code> 方法滚动到新的位置。</p>
+        <p><code>window.scrollTo(0, newScroll);</code>  <br> <br>使用 <code>window.scrollTo</code> 方法滚动到新的位置。</p>
     </li>
     <li>
         <strong style="color: red;">检查是否完成滚动</strong>
-        <p><code>if (progress < 1) { requestAnimationFrame(animateScroll); } else { currentScroll = newScroll; }</code> 如果动画还未完成，使用 <code>requestAnimationFrame</code> 继续调用 <code>animateScroll</code>。如果动画完成，更新 <strong>currentScroll</strong> 为新的滚动位置。</p>
+        <p><code>if (progress < 1) { requestAnimationFrame(animateScroll); } else { currentScroll = newScroll; }</code>  <br> <br>如果动画还未完成，使用 <code>requestAnimationFrame</code> 继续调用 <code>animateScroll</code>。如果动画完成，更新 <strong>currentScroll</strong> 为新的滚动位置。</p>
     </li>
     <li>
         <strong style="color: red;">启动！！</strong>
-        <p><code>requestAnimationFrame(animateScroll);</code> 开始动画。</p>
+        <p><code>requestAnimationFrame(animateScroll);</code>  <br> <br>开始动画。</p>
     </li>
 </ol>
 
