@@ -88,9 +88,6 @@
     transition: transform 0.3s ease;
 }
 
-#toggle-btn:active {
-    transform: translateY(-80px);
-}
 
 #sidebar.show ~ #toggle-btn::before {
     transform: rotate(315deg);
