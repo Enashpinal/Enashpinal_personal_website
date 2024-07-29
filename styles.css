@@ -459,9 +459,6 @@ section {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     backdrop-filter: blur(6px);
 }
-section * {
-    font-family: '你是我的可爱宝贝', sans-serif; 
-}
 
 section:hover {
     transform: translateY(-10px);
@@ -469,12 +466,14 @@ section:hover {
 }
 
 .gallery {
+     font-family: '你是我的可爱宝贝', sans-serif; 
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
 .gallery-item {
+  font-family: '你是我的可爱宝贝', sans-serif; 
     flex: 1 1 calc(33.333% - 1rem);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
@@ -518,6 +517,7 @@ section:hover {
 }
 
 .links-gallery {
+  font-family: '你是我的可爱宝贝', sans-serif; 
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -525,6 +525,7 @@ section:hover {
 
 
 .link-item {
+  font-family: '你是我的可爱宝贝', sans-serif; 
     flex: 1 1 calc(33.333% - 1rem);
     display: flex;
     align-items: center;
@@ -689,6 +690,7 @@ footer {
 }
 
 .carde {
+  font-family: '你是我的可爱宝贝', sans-serif; 
   padding-top: 50px;
   /* border-radius: 10px; */
   border: 3px solid rgb(255, 255, 255);
