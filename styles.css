@@ -405,9 +405,9 @@ nav {
   backdrop-filter: blur(10px);
   border-radius: 8px;
   position: fixed;
-  top: 20px;
-  left: 20px;
-  right: 20px; 
+  top: 10px; /* 上边距缩小 */
+  left: 20px; /* 左边距保持不变 */
+  right: 20px; /* 右边距保持不变 */
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
@@ -436,12 +436,12 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: white;
+  color: black; /* 修改为黑色 */
   padding: 10px;
   position: relative;
   overflow: hidden;
   transition: color 0.3s ease, text-shadow 0.3s ease;
-  text-shadow: 0 0 4px white;
+  text-shadow: 0 0 4px white; /* 默认白色光晕 */
 }
 
 nav ul li a:hover {
