@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+	<div id="sidebar">
+        <div class="sidebar-header">目录</div>
+        <div class="sidebar-nav" id="nav-list"></div>
+    </div>
+    <div id="toggle-btn"></div>
     <header>
         <a href="index.html" class="button">回到主菜单</a>
         <h1>【前端开发】一些精美的按钮设计（CSS+HTML）</h1>
@@ -2193,9 +2198,44 @@ button:active {
 
 </p>
 </section>
+	    </section>
+             <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const navList = document.getElementById('nav-list');
+
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('show');
+            });
+
+            function generateNav() {
+                const headings = document.querySelectorAll('h1, h2, h3');
+                let navHtml = '';
+
+                headings.forEach(heading => {
+                    const id = heading.id || heading.textContent.replace(/\s+/g, '-').toLowerCase();
+                    heading.id = id;
+
+                    let indentClass = '';
+                    if (heading.tagName === 'H2') {
+                        indentClass = 'indent-h2';
+                    } else if (heading.tagName === 'H3') {
+                        indentClass = 'indent-h3';
+                    }
+
+                    navHtml += `<a href="#${id}" class="${indentClass}">${heading.textContent}</a>`;
+                });
+
+                navList.innerHTML = navHtml;
+            }
+
+            generateNav();
+        });
+    </script>
     </main>
     <footer>
-        <p>&copy; 2024 Enashpinal_YEE. 保留所有权利。</p>
+        <p>Copyright &copy; 2024 Enashpinal_YEE rights reserved.</p>
     </footer>
 </body>
 </html>
