@@ -44,22 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="sidebar-nav" id="nav-list"></div>
     </div>
     <div id="toggle-btn"></div>
-    <script>
-        let isMovedUp = false;
-        let isMovedDown = false;
+<script>
+        let state = 0; // 0 = original, 1 = moved-up, 2 = moved-down
         
         document.getElementById('toggle-btn').addEventListener('click', function() {
-            if (!isMovedUp && !isMovedDown) {
+            if (state === 0) {
                 this.classList.add('moved-up');
-                isMovedUp = true;
-            } else if (isMovedUp && !isMovedDown) {
+                state = 1;
+            } else if (state === 1) {
                 this.classList.remove('moved-up');
                 this.classList.add('moved-down');
-                isMovedDown = true;
-                isMovedUp = false;
-            } else if (!isMovedUp && isMovedDown) {
+                state = 2;
+            } else if (state === 2) {
                 this.classList.remove('moved-down');
-                isMovedDown = false;
+                state = 0;
             }
         });
     </script>
