@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="sidebar-nav" id="nav-list"></div>
     </div>
     <div id="toggle-btn"></div>
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function() {
+            this.classList.toggle('moved');
+        });
+    </script>
     <header>
         <a href="index.html" class="button">回到主菜单</a>
         <h1>MINECRAFT | 没有正版也可以免费定制皮肤头像了！</h1>
