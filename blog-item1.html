@@ -8,6 +8,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+	<div class="title" style="font-family: 'MOJANG ABC', sans-serif;">Enashpinal_YEE</div>
+        <ul>
+            <li><a href="#about">🏆About</a></li>
+            <li><a href="#portfolio">📖Projects</a></li>
+            <li><a href="#blog">🎨Blogs</a></li>
+            <li><a href="#links">🔗Link Exchange</a></li>
+            <li><a href="#contact">🔍Other</a></li>
+        </ul>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('nav ul li a');
+
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const target = link.getAttribute('data-target');
+            const url = 'https://enashpinal.pages.dev/';
+            window.location.href = url;
+
+            setTimeout(() => {
+                const element = document.querySelector(target);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000); 
+        });
+    });
+});
+</script>
     <div id="sidebar">
         <div class="sidebar-header">目录</div>
         <div class="sidebar-nav" id="nav-list"></div>
