@@ -45,8 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     <div id="toggle-btn"></div>
     <script>
+        let isMovedUp = false;
+        let isMovedDown = false;
+        
         document.getElementById('toggle-btn').addEventListener('click', function() {
-            this.classList.toggle('moved');
+            if (!isMovedUp && !isMovedDown) {
+                this.classList.add('moved-up');
+                isMovedUp = true;
+            } else if (isMovedUp && !isMovedDown) {
+                this.classList.remove('moved-up');
+                this.classList.add('moved-down');
+                isMovedDown = true;
+                isMovedUp = false;
+            } else if (!isMovedUp && isMovedDown) {
+                this.classList.remove('moved-down');
+                isMovedDown = false;
+            }
         });
     </script>
     <header>
