@@ -1,5 +1,5 @@
  #sidebar {
-    z-index: 1;
+    z-index: 100000;
     position: fixed;
     top: 0;
     right: 0;
@@ -62,7 +62,7 @@
 #toggle-btn {
     z-index: 1;
     position: fixed;
-    top: 60px;
+    top: 100px;
     right: 20px;
     width: 50px;
     height: 50px;
