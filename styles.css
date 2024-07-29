@@ -127,7 +127,8 @@ img {
 
 .window {
   position: relative; 
-  height: 500px;
+ height: auto; 
+  max-height: calc(100% - 30px);  
   width: 800px;
   background-color: #fff;
   border: 2px solid #333;
