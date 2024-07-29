@@ -88,51 +88,27 @@
 #sidebar.show ~ #toggle-btn::before {
     transform: rotate(315deg);
 }
-h2, h3, h4, h5, h6 {
+  h2, h3, h4, h5, h6 {
     position: relative;
     padding-left: 40px; 
     margin-bottom: 20px;
-    display: inline-block;
+    display: inline-block; 
 }
 
 h2::before, h3::before, h4::before, h5::before, h6::before {
     content: "#\00a0";
     color: green;
-    font-size: 24px; 
+    font-size: 24px;
     position: absolute;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-h2::after, h3::after, h4::after, h5::after, h6::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background-color: red;
-    position: absolute;
-    left: 0;
-    bottom: -5px; 
-    width: 100%; 
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-    transform-origin: left;
+    transition: opacity 0.3s ease;
 }
 
 h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
     opacity: 1;
-    transform: translateY(-50%);
-}
-
-h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after {
-    transform: scaleX(1);
-}
-
-h2:not(:hover)::after, h3:not(:hover)::after, h4:not(:hover)::after, h5:not(:hover)::after, h6:not(:hover)::after {
-    transform: scaleX(0);
-    transform-origin: right;
 }
 img {
   box-shadow: 2px 2px 3px white;
