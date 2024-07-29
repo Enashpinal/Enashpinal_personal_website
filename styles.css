@@ -352,6 +352,8 @@ h2{
 @font-face {
     font-family: '你是我的可爱宝贝';
     src: url('NiShiWoDeKeAiBaoBei-2.ttf') format('truetype');
+   font-family: 'MOJANG ABC';
+   src: url('MOJANG-ABC_1.0.0.ttf') format('truetype');
 }
 
 body {
