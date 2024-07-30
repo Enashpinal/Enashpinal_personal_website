@@ -87,12 +87,8 @@
     line-height: 1;
     transition: transform 0.3s ease;
 }
-#toggle-btn.moved-up {
-    transform: translateY(-80px); 
-}
-
-#toggle-btn.moved-down {
-    transform: translateY(80px); 
+#toggle-btn.moved {
+            transform: translateY(-80px); 
 }
 
 #sidebar.show ~ #toggle-btn::before {
