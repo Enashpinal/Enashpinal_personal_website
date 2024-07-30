@@ -360,9 +360,9 @@
 	            </select>
 	        </div>
 	        <div class="blog-list" id="blog-list">
-		<div class="card visible" data-tags="前端开发,教程">
+			<div class="card visible" data-tags="前端开发,教程">
 	                <a href="blog-item7.html" class="card-title">【前端开发『原创』】几行JavaScript实现平滑的网页滚动</a>
-	                <p class="card-summary">几行JavaScript实现平滑的网页滚动（附完整js代码）</p>
+	                <p class="card-summary">几行JavaScript代码实现平滑的网页滚动（附完整js代码）</p>
 	                <p class="card-date">发布日期: 2024-7-28</p>
 	                <div class="card-tags">
 	                    <span class="tag">前端开发</span>
@@ -384,8 +384,8 @@
 	                <div class="card-tags">
 	                    <span class="tag">教程</span>
 	                </div>
-	            </div>
-	            <div class="card visible" data-tags="MC服务器,Minecraft">
+		    </div>
+	     		<div class="card visible" data-tags="MC服务器,Minecraft">
 	                <a href="blog-item3.html" class="card-title">【MC服务器宣传】CloudDream云梦谷服务器招新</a>
 	                <p class="card-summary">刚开3个月的新服，没人玩，快来帮帮我们！</p>
 	                <p class="card-date">发布日期: 2024-06-09</p>
@@ -424,83 +424,86 @@
 	        <button class="load-more">加载更多</button>
 	
 		<script>
-	    const tagFilter = document.getElementById('tag-filter');
-	    const blogList = document.getElementById('blog-list');
-	    const cards = blogList.getElementsByClassName('card');
-	    const loadMoreButton = document.querySelector('.load-more');
-	
-	    let visibleCount = 3;
-	    let allVisible = false; 
-	    let currentTag = 'all'; 
-	
-	    function displayInitialCards() {
-	        for (let i = 0; i < visibleCount; i++) {
-	            if (cards[i] && isCardVisible(cards[i])) {
-	                cards[i].classList.add('visible');
-	                cards[i].style.display = 'block'; 
-	            }
-	        }
-	    }
-	
-	    function isCardVisible(card) {
-	        const tags = card.getAttribute('data-tags').split(',');
-	        return currentTag === 'all' || tags.includes(currentTag);
-	    }
-	
-	    displayInitialCards();
-	
-	    loadMoreButton.addEventListener('click', function() {
-	        if (!allVisible) {
-	            for (let i = visibleCount; i < cards.length; i++) {
-	                if (cards[i] && isCardVisible(cards[i])) {
-	                    cards[i].classList.add('visible');
-	                    cards[i].style.display = 'block'; 
-	                }
-	            }
-	            visibleCount = cards.length;
-	            loadMoreButton.textContent = '收起更多'; 
-	            allVisible = true; 
-	        } else {
-	            for (let i = 3; i < cards.length; i++) {
-	                if (cards[i]) {
-	                    cards[i].classList.remove('visible');
-	                    cards[i].style.display = 'none'; 
-	                }
-	            }
-	            visibleCount = 3; 
-	            loadMoreButton.textContent = '加载更多'; 
-	            allVisible = false; 
-	        }
-	    });
-	
-	    tagFilter.addEventListener('change', function() {
-	        currentTag = this.value;
-	        for (let card of cards) {
-	            card.classList.remove('visible'); 
-	            card.style.display = 'none';
-	        }
-	
-	        visibleCount = 3; 
-	        loadMoreButton.style.display = 'inline-block';
-	        loadMoreButton.textContent = '加载更多'; 
-	        allVisible = false; 
-	
-	        for (let card of cards) {
-	            if (isCardVisible(card)) {
-	                card.classList.add('visible'); 
-	                card.style.display = 'block';
-	            }
-	        }
-	
-	        const visibleCards = blogList.getElementsByClassName('visible');
-	        for (let i = 0; i < visibleCards.length; i++) {
-	            if (i < visibleCount) {
-	                visibleCards[i].style.display = 'block';
-	            } else {
-	                visibleCards[i].style.display = 'none';
-	            }
-	        }
-	    });
+	   	const tagFilter = document.getElementById('tag-filter');
+		const blogList = document.getElementById('blog-list');
+		const cards = blogList.getElementsByClassName('card');
+		const loadMoreButton = document.querySelector('.load-more');
+		
+		let visibleCount = 3;
+		let allVisible = false;
+		let currentTag = 'all';
+		
+		function displayInitialCards() {
+		    // 初始隐藏所有卡片
+		    for (let card of cards) {
+		        card.classList.remove('visible');
+		        card.style.display = 'none';
+		    }
+		
+		    // 显示前3个符合条件的卡片
+		    let count = 0;
+		    for (let card of cards) {
+		        if (count < 3 && isCardVisible(card)) {
+		            card.classList.add('visible');
+		            card.style.display = 'block';
+		            count++;
+		        }
+		    }
+		}
+		
+		function isCardVisible(card) {
+		    const tags = card.getAttribute('data-tags').split(',');
+		    return currentTag === 'all' || tags.includes(currentTag);
+		}
+		
+		displayInitialCards();
+		
+		loadMoreButton.addEventListener('click', function() {
+		    if (!allVisible) {
+		        for (let i = visibleCount; i < cards.length; i++) {
+		            if (cards[i] && isCardVisible(cards[i])) {
+		                cards[i].classList.add('visible');
+		                cards[i].style.display = 'block';
+		            }
+		        }
+		        visibleCount = cards.length;
+		        loadMoreButton.textContent = '收起更多';
+		        allVisible = true;
+		    } else {
+		        for (let i = 3; i < cards.length; i++) {
+		            if (cards[i]) {
+		                cards[i].classList.remove('visible');
+		                cards[i].style.display = 'none';
+		            }
+		        }
+		        visibleCount = 3;
+		        loadMoreButton.textContent = '加载更多';
+		        allVisible = false;
+		    }
+		});
+		
+		tagFilter.addEventListener('change', function() {
+		    currentTag = this.value;
+		    for (let card of cards) {
+		        card.classList.remove('visible');
+		        card.style.display = 'none';
+		    }
+		
+		    visibleCount = 3;
+		    loadMoreButton.style.display = 'inline-block';
+		    loadMoreButton.textContent = '加载更多';
+		    allVisible = false;
+		
+		    let count = 0;
+		    for (let card of cards) {
+		        if (count < visibleCount && isCardVisible(card)) {
+		            card.classList.add('visible');
+		            card.style.display = 'block';
+		            count++;
+		        }
+		    }
+		});
+
 	</script>
 
         </section>
