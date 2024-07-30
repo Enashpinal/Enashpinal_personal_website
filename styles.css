@@ -60,37 +60,38 @@
     padding-left: 40px;
 }
 #toggle-btn {
-    z-index: 10001;
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #ff5722;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
+     z-index: 10001;
+     position: fixed;
+     top: 100px;
+     right: 20px;
+     width: 50px;
+     height: 50px;
+     background-color: #ff5722;
+     color: #fff;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+     transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+ }
 
-#toggle-btn:hover {
-    background-color: #e64a19;
-}
+ #toggle-btn:hover {
+     background-color: #e64a19;
+ }
 
-#toggle-btn::before {
-    content: '+';
-    font-size: 24px;
-    line-height: 1;
-    transition: transform 0.3s ease;
-}
-#toggle-btn.moved {
-            transform: translateY(-80px); 
-}
+ #toggle-btn::before {
+     content: '+';
+     font-size: 24px;
+     line-height: 1;
+     transition: transform 0.3s ease;
+ }
 
+ #toggle-btn.moved {
+     transform: translateY(-80px); 
+     opacity: 0; 
+ }
 #sidebar.show ~ #toggle-btn::before {
     transform: rotate(315deg);
 }
