@@ -90,7 +90,7 @@
 
  #toggle-btn.moved {
      transform: translateY(-80px); 
-     opacity: 0; 
+     background-color: transparent;
  }
 #sidebar.show ~ #toggle-btn::before {
     transform: rotate(315deg);
