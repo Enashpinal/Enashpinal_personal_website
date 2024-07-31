@@ -55,9 +55,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Adding event listeners to iframes
-document.querySelectorAll('iframe').forEach(iframe => {
-    iframe.contentWindow.addEventListener('wheel', handleWheelEvent, { passive: false });
-    iframe.contentWindow.document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+function addSmoothScrollToIframe(iframe) {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.addEventListener('wheel', handleWheelEvent, { passive: false });
+    iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', handleAnchorClick);
+    });
+}
+
+document.querySelectorAll('iframe').forEach(iframe => {
+    // Ensure iframe is loaded
+    iframe.addEventListener('load', () => {
+        addSmoothScrollToIframe(iframe);
     });
 });
