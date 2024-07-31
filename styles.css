@@ -415,71 +415,118 @@ h1 {
 
 
 nav {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 12px; 
-  position: fixed;
-  top: 10px;
-  left: 20px;
-  right: 20px;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 12px; 
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 }
 
 nav .title {
-  font-size: 32px;
-  color: white;
-  text-shadow: 0 0 8px white;
+    font-size: 32px;
+    color: white;
+    text-shadow: 0 0 8px white;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-  margin-left: 15px;
-  position: relative;
+    margin-left: 15px;
+    position: relative;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: white;
-  padding: 8px 16px; 
-  font-size: 20px; 
-  border-radius: 20px; 
-  position: relative;
-  overflow: hidden;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-  text-shadow: 0 0 4px white;
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px; 
+    font-size: 20px; 
+    border-radius: 20px; 
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: 0 0 4px white;
 }
 
 nav ul li a:hover {
-  color: red;
-  text-shadow: 0 0 8px red;
+    color: red;
+    text-shadow: 0 0 8px red;
 }
 
 nav ul li a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background-color: red;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
 
 nav ul li a:hover::after {
-  transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+.arrow {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    right: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.up-arrow {
+    bottom: -30px;
+}
+
+.down-arrow {
+    top: -30px;
+}
+
+nav.collapsed {
+    transform: translateY(-100px);
+}
+
+nav.expanded {
+    transform: translateY(0);
+}
+
+nav:hover .down-arrow {
+    display: none;
+}
+
+nav.collapsed:hover .up-arrow {
+    display: block;
+}
+
+nav.expanded .up-arrow {
+    display: none;
+}
+
+nav.collapsed .down-arrow {
+    display: block;
+}
+
+nav.expanded .down-arrow {
+    display: none;
 }
 
 main {
