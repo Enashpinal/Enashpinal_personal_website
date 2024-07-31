@@ -13,10 +13,9 @@ function smoothScroll() {
 }
 
 function handleWheelEvent(event) {
-    event.preventDefault(); 
-
-    // Check if the event target is an iframe
-    if (event.target === window) {
+    // Check if the event target is not inside an iframe
+    if (!event.target.closest('iframe')) {
+        event.preventDefault(); 
         targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
         smoothScroll();
     }
