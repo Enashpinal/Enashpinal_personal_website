@@ -1,5 +1,8 @@
 html, body {
     overflow: hidden;
+    overflow: auto; /* 保留滚动功能 */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 }
 #sidebar {
     z-index: 10000;
