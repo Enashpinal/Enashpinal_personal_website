@@ -1,6 +1,6 @@
 html, body {
     overflow: hidden;
-    overflow: auto; /* 保留滚动功能 */
+    overflow: auto; 
     -ms-overflow-style: none;  
     scrollbar-width: none;
 }
