@@ -13,7 +13,6 @@ function smoothScroll() {
 }
 
 window.addEventListener('wheel', function(event) {
-    event.preventDefault();
     targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
     targetScroll = Math.max(0, Math.min(document.body.scrollHeight - window.innerHeight, targetScroll));
     smoothScroll();
