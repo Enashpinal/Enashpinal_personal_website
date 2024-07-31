@@ -14,8 +14,12 @@ function smoothScroll() {
 
 function handleWheelEvent(event) {
     event.preventDefault(); 
-    targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
-    smoothScroll();
+
+    // Check if the event target is an iframe
+    if (event.target === window) {
+        targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+        smoothScroll();
+    }
 }
 
 function handleAnchorClick(e) {
@@ -57,9 +61,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Adding event listeners to iframes
 function addSmoothScrollToIframe(iframe) {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDoc.addEventListener('wheel', handleWheelEvent, { passive: false });
+
+    // Prevent smooth scrolling in iframes
+    iframeDoc.addEventListener('wheel', function(event) {
+        event.stopPropagation(); // Stop event from bubbling up to parent
+    }, { passive: false });
+
     iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', handleAnchorClick);
+        anchor.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent click events from affecting parent
+        });
     });
 }
 
