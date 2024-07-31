@@ -12,40 +12,52 @@ function smoothScroll() {
     }
 }
 
-window.addEventListener('wheel', function(event) {
+function handleWheelEvent(event) {
     event.preventDefault(); 
     targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
     smoothScroll();
-}, { passive: false });
+}
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault(); 
+function handleAnchorClick(e) {
+    e.preventDefault(); 
 
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetScroll = targetElement.offsetTop; 
-            const startScroll = currentScroll; 
-            const distance = targetScroll - startScroll; 
-            const duration = 300; 
-            const startTime = performance.now();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+        targetScroll = targetElement.offsetTop; 
+        const startScroll = currentScroll; 
+        const distance = targetScroll - startScroll; 
+        const duration = 300; 
+        const startTime = performance.now();
 
-            function animateScroll(currentTime) {
-                const elapsed = currentTime - startTime; 
-                const progress = Math.min(elapsed / duration, 1); 
-                const newScroll = startScroll + distance * progress;
+        function animateScroll(currentTime) {
+            const elapsed = currentTime - startTime; 
+            const progress = Math.min(elapsed / duration, 1); 
+            const newScroll = startScroll + distance * progress;
 
-                window.scrollTo(0, newScroll);
+            window.scrollTo(0, newScroll);
 
-                if (progress < 1) {
-                    requestAnimationFrame(animateScroll);
-                } else {
-                    currentScroll = newScroll;
-                }
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            } else {
+                currentScroll = newScroll;
             }
-
-            requestAnimationFrame(animateScroll); 
         }
+
+        requestAnimationFrame(animateScroll); 
+    }
+}
+
+// Adding event listeners to the document
+document.addEventListener('wheel', handleWheelEvent, { passive: false });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', handleAnchorClick);
+});
+
+// Adding event listeners to iframes
+document.querySelectorAll('iframe').forEach(iframe => {
+    iframe.contentWindow.addEventListener('wheel', handleWheelEvent, { passive: false });
+    iframe.contentWindow.document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', handleAnchorClick);
     });
 });
