@@ -529,6 +529,52 @@ nav.expanded .down-arrow {
     display: none;
 }
 
+.arrow {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    right: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.up-arrow {
+    bottom: -30px;
+}
+
+.down-arrow {
+    top: -30px;
+}
+
+nav.collapsed {
+    transform: translateY(-100px);
+}
+
+nav.expanded {
+    transform: translateY(0);
+}
+
+nav:hover .down-arrow {
+    display: none;
+}
+
+nav.collapsed:hover .up-arrow {
+    display: block;
+}
+
+nav.expanded .up-arrow {
+    display: none;
+}
+
+nav.collapsed .down-arrow {
+    display: block;
+}
+
+nav.expanded .down-arrow {
+    display: none;
+}
+
 main {
     padding: 2rem;
     animation: fadeIn 1s 1s backwards;
