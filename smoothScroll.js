@@ -1,7 +1,7 @@
 let scrollSpeed = 40;
 let currentScroll = window.scrollY;
 let targetScroll = currentScroll;
-let inertia = 0.001;
+let inertia = 0.1;
 
 function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * inertia;
@@ -47,40 +47,39 @@ function handleAnchorClick(e) {
     }
 }
 
-// Adding event listeners to the document
 document.addEventListener('wheel', handleWheelEvent, { passive: false });
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', handleAnchorClick);
 });
 
-// Adding event listeners to iframes
-function addSmoothScrollToIframe(iframe) {
+function handleIframeWheelEvent(iframe, event) {
     const iframeWin = iframe.contentWindow;
+    const iframeDoc = iframeWin.document;
+    const scrollTop = iframeDoc.documentElement.scrollTop || iframeDoc.body.scrollTop;
+    const scrollHeight = iframeDoc.documentElement.scrollHeight || iframeDoc.body.scrollHeight;
+    const clientHeight = iframeDoc.documentElement.clientHeight || iframeDoc.body.clientHeight;
 
-    iframeWin.addEventListener('wheel', (event) => {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        const scrollTop = iframeDoc.documentElement.scrollTop || iframeDoc.body.scrollTop;
-        const scrollHeight = iframeDoc.documentElement.scrollHeight || iframeDoc.body.scrollHeight;
-        const clientHeight = iframeDoc.documentElement.clientHeight || iframeDoc.body.clientHeight;
+    if ((event.deltaY > 0 && scrollTop + clientHeight >= scrollHeight) ||
+        (event.deltaY < 0 && scrollTop <= 0)) {
+        // Let the main document handle the scroll
+        event.preventDefault();
+        targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+        smoothScroll();
+    }
+}
 
-        if ((event.deltaY > 0 && scrollTop + clientHeight >= scrollHeight) || (event.deltaY < 0 && scrollTop <= 0)) {
-            // Let the main document handle the scroll
-            event.preventDefault();
-            targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
-            smoothScroll();
-        } else {
-            // Let the iframe handle the scroll
-            event.stopPropagation();
-        }
-    }, { passive: false });
+function addSmoothScrollToIframe(iframe) {
+    iframe.addEventListener('load', () => {
+        const iframeWin = iframe.contentWindow;
+        iframeWin.addEventListener('wheel', (event) => handleIframeWheelEvent(iframe, event), { passive: false });
 
-    iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', handleAnchorClick);
+        const iframeDoc = iframeWin.document;
+        iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', handleAnchorClick);
+        });
     });
 }
 
 document.querySelectorAll('iframe').forEach(iframe => {
-    iframe.addEventListener('load', () => {
-        addSmoothScrollToIframe(iframe);
-    });
+    addSmoothScrollToIframe(iframe);
 });
