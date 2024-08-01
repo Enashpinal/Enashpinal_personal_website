@@ -48,6 +48,22 @@ function handleAnchorClick(e) {
     }
 }
 
+// Check if the iframe can scroll further
+function canIframeScroll(iframe, deltaY) {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const scrollTop = iframeDoc.documentElement.scrollTop || iframeDoc.body.scrollTop;
+    const scrollHeight = iframeDoc.documentElement.scrollHeight || iframeDoc.body.scrollHeight;
+    const clientHeight = iframeDoc.documentElement.clientHeight || iframeDoc.body.clientHeight;
+
+    if (deltaY > 0) {
+        // Scrolling down
+        return scrollTop + clientHeight < scrollHeight;
+    } else {
+        // Scrolling up
+        return scrollTop > 0;
+    }
+}
+
 // Adding event listeners to the document
 document.addEventListener('wheel', handleWheelEvent, { passive: false });
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -57,9 +73,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Adding event listeners to iframes
 function addSmoothScrollToIframe(iframe) {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    
+
     iframeDoc.addEventListener('wheel', (event) => {
-        event.stopPropagation();
+        if (canIframeScroll(iframe, event.deltaY)) {
+            // Let the iframe handle the scroll
+            event.stopPropagation();
+        } else {
+            // Let the main document handle the scroll
+            event.preventDefault();
+            targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
+            smoothScroll();
+        }
     }, { passive: false });
     
     iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
