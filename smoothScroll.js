@@ -9,7 +9,9 @@ let inertia = 0.001;
 function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * inertia;
     window.scrollTo(0, currentScroll);
-    requestAnimationFrame(smoothScroll);
+    if (Math.abs(targetScroll - currentScroll) > 0.1) {
+        requestAnimationFrame(smoothScroll);
+    }
 }
 
 window.addEventListener('wheel', function(event) {
