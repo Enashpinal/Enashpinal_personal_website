@@ -289,6 +289,7 @@
 			Welcome to my website.<br>
 			This website does not use templates; all the code is written by myself.<br>
 			This is my first website, so it might not be very good.<br>
+		  </p>
 		  </div>
 		</div>
 			
@@ -328,15 +329,54 @@
 		    <span class="actual-text">&nbsp;blogs&nbsp;</span>
 		    <span aria-hidden="true" class="hover-text">&nbsp;blogs&nbsp;</span>
 		</button>
+		<div style="text-align: right;" >
+		  <button class="cssbuttons-io-button" id="openIframeButton" onclick="openIframe()">
+		    Bilibili
+		    <div class="icon">
+		      <svg
+		        height="24"
+		        width="24"
+		        viewBox="0 0 24 24"
+		        xmlns="http://www.w3.org/2000/svg"
+		      >
+		        <path d="M0 0h24v24H0z" fill="none"></path>
+		        <path
+		          d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+		          fill="currentColor"
+		        ></path>
+		      </svg>
+		    </div>
+		  </button>
+		</div>
+		<div class="bcard">
+		  <div class="tools">
+		    <div class="circle">
+		      <span class="red box"></span>
+		    </div>
+		    <div class="circle">
+		      <span class="yellow box"></span>
+		    </div>
+		    <div class="circle">
+		      <span class="green box"></span>
+		    </div>
+		  </div>
+		  <div class="card__content">  
+			  <div class="iframe-container">
+			        <iframe 
+			            src="https://enashpinal.github.io/" 
+			            class="responsive-iframe" 
+			            allowfullscreen>
+			            抱歉，你的浏览器不支持嵌入頁面😅
+			        </iframe>
+   			 </div>
+			<script>
+		        function openIframe() {
+		            document.getElementById('iframeDisplay').src = 'https://enashpinal.github.io/';
+		        }
+		    </script>
+		  </div>
+		</div>
 		
-		<div class="iframe-container">
-	        <iframe 
-	            src="https://enashpinal.github.io/" 
-	            class="responsive-iframe" 
-	            allowfullscreen>
-	            你的浏览器不支持 iframe 标签。
-	        </iframe>
-    </div>
         </section>
         <section id="links">
 		<button class="buttont" data-text="Awesome">
@@ -480,7 +520,7 @@
 	      ></path>
 	    </svg>
   	</div>	
-</button>
+	</button>
 
 </td>
          </tr>
