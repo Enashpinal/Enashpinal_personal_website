@@ -57,7 +57,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Adding event listeners to iframes
 function addSmoothScrollToIframe(iframe) {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDoc.addEventListener('wheel', handleWheelEvent, { passive: false });
+    
+    iframeDoc.addEventListener('wheel', (event) => {
+        event.stopPropagation();
+    }, { passive: false });
+    
     iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', handleAnchorClick);
     });
