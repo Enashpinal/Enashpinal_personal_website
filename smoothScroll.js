@@ -14,7 +14,7 @@ function smoothScroll() {
 
 function handleWheelEvent(event) {
     // Check if the event target is not inside an iframe
-    if (!event.target.closest('iframe')) {
+    if (!isIframeScrollable()) {
         event.preventDefault(); 
         targetScroll += event.deltaY > 0 ? scrollSpeed : -scrollSpeed;
         smoothScroll();
@@ -51,6 +51,15 @@ function handleAnchorClick(e) {
     }
 }
 
+function isIframeScrollable() {
+    const iframe = document.getElementById('embedded-page');
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const iframeHeight = iframeDoc.documentElement.scrollHeight;
+    const viewportHeight = iframe.clientHeight;
+
+    return iframeHeight > viewportHeight;
+}
+
 // Adding event listeners to the document
 document.addEventListener('wheel', handleWheelEvent, { passive: false });
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -58,24 +67,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Adding event listeners to iframes
-function addSmoothScrollToIframe(iframe) {
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-    // Prevent smooth scrolling in iframes
+document.getElementById('embedded-page').addEventListener('load', () => {
+    const iframeDoc = document.getElementById('embedded-page').contentDocument || document.getElementById('embedded-page').contentWindow.document;
     iframeDoc.addEventListener('wheel', function(event) {
         event.stopPropagation(); // Stop event from bubbling up to parent
     }, { passive: false });
-
-    iframeDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(event) {
-            event.stopPropagation(); // Prevent click events from affecting parent
-        });
-    });
-}
-
-document.querySelectorAll('iframe').forEach(iframe => {
-    // Ensure iframe is loaded
-    iframe.addEventListener('load', () => {
-        addSmoothScrollToIframe(iframe);
-    });
 });
