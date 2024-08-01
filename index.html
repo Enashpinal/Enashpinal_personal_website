@@ -329,38 +329,6 @@
 		    <span class="actual-text">&nbsp;blogs&nbsp;</span>
 		    <span aria-hidden="true" class="hover-text">&nbsp;blogs&nbsp;</span>
 		</button>
-		<div style="text-align: right; padding: 10px;">
-	        <button class="cssbuttons-io-button" id="openIframeButton" onclick="openIframe()">
-	            Enashpinal's blog
-	            <div class="icon">
-	                <svg
-	                    height="24"
-	                    width="24"
-	                    viewBox="0 0 24 24"
-	                    xmlns="http://www.w3.org/2000/svg"
-	                >
-	                    <path d="M0 0h24v24H0z" fill="none"></path>
-	                    <path
-	                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-	                        fill="currentColor"
-	                    ></path>
-	                </svg>
-	            </div>
-	        </button>
-	    </div>
-	
-	    <div class="bcard">
-	        <div class="tools">
-	            <div class="circle">
-	                <span class="red box"></span>
-	            </div>
-	            <div class="circle">
-	                <span class="yellow box"></span>
-	            </div>
-	            <div class="circle">
-	                <span class="green box"></span>
-	            </div>
-	        </div>
 	        <div class="card__content">  
 	            <div class="iframe-container">
 	                <iframe 
@@ -372,14 +340,28 @@
 	                </iframe>
 	            </div>
 	        </div>
-	    </div>
+	<script>
+	    document.getElementById('iframeDisplay').addEventListener('load', function() {
+	        const iframe = document.getElementById('iframeDisplay');
+	        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 	
-	    <script>
-	        function openIframe() {
-	            document.getElementById('iframeDisplay').src = 'https://enashpinal.github.io/';
-	        }
-	    </script>
-		
+	        const observer = new MutationObserver(function(mutations) {
+	            mutations.forEach(function(mutation) {
+	                if (mutation.type === 'childList') {
+	                    const links = iframeDoc.getElementsByTagName('a');
+	                    for (let link of links) {
+	                        link.setAttribute('target', '_blank');
+	                    }
+	                }
+	            });
+	        });
+	
+	        const config = { childList: true, subtree: true };
+	
+	        observer.observe(iframeDoc.body, config);
+	    });
+	</script>
+			
         </section>
         <section id="links">
 		<button class="buttont" data-text="Awesome">
