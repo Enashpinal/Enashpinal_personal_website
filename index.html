@@ -340,27 +340,6 @@
 	                </iframe>
 	            </div>
 	        </div>
-	<script>
-	    document.getElementById('iframeDisplay').addEventListener('load', function() {
-	        const iframe = document.getElementById('iframeDisplay');
-	        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-	
-	        const observer = new MutationObserver(function(mutations) {
-	            mutations.forEach(function(mutation) {
-	                if (mutation.type === 'childList') {
-	                    const links = iframeDoc.getElementsByTagName('a');
-	                    for (let link of links) {
-	                        link.setAttribute('target', '_blank');
-	                    }
-	                }
-	            });
-	        });
-	
-	        const config = { childList: true, subtree: true };
-	
-	        observer.observe(iframeDoc.body, config);
-	    });
-	</script>
 			
         </section>
         <section id="links">
