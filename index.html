@@ -226,7 +226,7 @@
 	<p style="text-shadow: 2px 2px 2px black;color: black;">The jumping blocks at my are my lifelong belief.</p>
     </header>
     <nav class="expanded">
-        <div class="title" style="font-family: 'MOJANG ABC', sans-serif;">Enashpinal_YEE</div>
+        <div class="title">Enashpinal_YEE</div>
         <ul>
             <li><a href="#about">🏆About</a></li>
             <li><a href="#portfolio">📖Projects</a></li>
@@ -234,22 +234,30 @@
             <li><a href="#links">🔗Link Exchange</a></li>
             <li><a href="#contact">🔍Other</a></li>
         </ul>
-        <div class="arrow up-arrow" id="upArrow">▲</div>
-        <div class="arrow down-arrow" id="downArrow">▼</div>
     </nav>
-
+    <div class="mini-nav" id="miniNav"></div>
     <script>
-        document.getElementById('upArrow').addEventListener('click', () => {
-            document.querySelector('nav').classList.add('collapsed');
-            document.querySelector('nav').classList.remove('expanded');
+        document.querySelector('nav').addEventListener('click', (e) => {
+            if (e.target.tagName.toLowerCase() !== 'a') {
+                document.querySelector('nav').classList.add('collapsed');
+                document.querySelector('nav').classList.remove('expanded');
+                const miniNav = document.getElementById('miniNav');
+                miniNav.classList.add('visible');
+                miniNav.classList.remove('hidden');
+            }
         });
 
-        document.getElementById('downArrow').addEventListener('click', () => {
-            document.querySelector('nav').classList.add('expanded');
-            document.querySelector('nav').classList.remove('collapsed');
+        document.getElementById('miniNav').addEventListener('click', () => {
+            const miniNav = document.getElementById('miniNav');
+            miniNav.classList.add('hidden');
+            miniNav.classList.remove('visible');
+
+            setTimeout(() => {
+                document.querySelector('nav').classList.add('expanded');
+                document.querySelector('nav').classList.remove('collapsed');
+            }, 300); 
         });
 
-        // Initially set the state of the navigation bar
         document.querySelector('nav').classList.add('expanded');
     </script>
     <main>
