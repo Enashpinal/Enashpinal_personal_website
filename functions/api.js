@@ -1,4 +1,22 @@
-export async function onRequest(context) {
+export const onRequestOptions: PagesFunction = async () => {
+    return new Response(null, {
+        status: 204,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Access-Control-Max-Age': '86400',
+        },
+    });
+};
+
+// 主请求处理函数
+export const onRequest: PagesFunction = async (context) => {
+    // 处理预检请求
+    if (context.request.method === 'OPTIONS') {
+        return onRequestOptions();
+    }
+
     const seedURL = 'https://www.bilibili.com/v/popular/rank/all';
 
     try {
@@ -15,10 +33,16 @@ export async function onRequest(context) {
             html: htmlContent
         };
 
-        return new Response(JSON.stringify(jsonResponse), {
-            headers: { 'Content-Type': 'application/json' }
+        const jsonResponseObject = new Response(JSON.stringify(jsonResponse), {
+            headers: { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Max-Age': '86400'
+            }
         });
+
+        return jsonResponseObject;
     } catch (error) {
         return new Response('请求失败: ' + error.message, { status: 500 });
     }
-}
+};
