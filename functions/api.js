@@ -4,12 +4,10 @@ export async function onRequest(context) {
     const url = "https://www.bilibili.com/v/popular/rank/all";
 
     try {
-        // 使用fetch请求获取HTML内容
-        const response = await fetch(url, {
-            method: 'GET'
-        });
+        // 发起请求获取HTML代码，不设置请求头
+        const response = await fetch(url);
 
-        // 检查请求状态
+        // 检查响应状态
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
