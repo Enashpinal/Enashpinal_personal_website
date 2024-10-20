@@ -1,29 +1,40 @@
-// /functions/getBilibiliRank.js
+import { createReadStream } from 'fs';
+import fetch from 'node-fetch';
+import cheerio from 'cheerio';
+import iconv from 'iconv-lite';
 
 export async function onRequest(context) {
-    const url = "https://www.bilibili.com/v/popular/rank/all";
+    const url = 'https://www.bilibili.com/v/popular/rank/all';
 
     try {
-        // 发起请求获取HTML代码，不设置请求头
+        // 使用 fetch 请求网页内容
         const response = await fetch(url);
-
-        // 检查响应状态
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            console.error('网络请求失败，状态码:', response.status);
+            return new Response('网络请求失败', { status: 500 });
         }
 
-        // 获取响应的HTML文本
-        const html = await response.text();
+        // 获取网页内容并解码
+        const buffer = await response.buffer();
+        const htmlContent = iconv.decode(buffer, 'utf-8'); // 根据需要调整编码
 
-        // 返回获取的HTML内容
-        return new Response(html, {
-            headers: {
-                "Content-Type": "text/html;charset=utf-8",
-            },
+        // 使用 cheerio 解析 HTML
+        const $ = cheerio.load(htmlContent);
+        const data = []; // 存储爬取的数据
+
+        // 假设你要爬取某些特定元素
+        $('selector').each((index, element) => {
+            const item = $(element).text();
+            data.push(item);
         });
+
+        // 返回 JSON 响应
+        return new Response(JSON.stringify(data), {
+            headers: { 'Content-Type': 'application/json' }
+        });
+
     } catch (error) {
-        return new Response("Error fetching data: " + error.message, {
-            status: 500
-        });
+        console.error('请求失败:', error);
+        return new Response('请求失败: ' + error.message, { status: 500 });
     }
 }
