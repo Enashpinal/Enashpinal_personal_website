@@ -1,8 +1,3 @@
-import { createReadStream } from 'fs';
-import fetch from 'node-fetch';
-import cheerio from 'cheerio';
-import iconv from 'iconv-lite';
-
 export async function onRequest(context) {
     const url = 'https://www.bilibili.com/v/popular/rank/all';
 
@@ -14,22 +9,15 @@ export async function onRequest(context) {
             return new Response('网络请求失败', { status: 500 });
         }
 
-        // 获取网页内容并解码
-        const buffer = await response.buffer();
-        const htmlContent = iconv.decode(buffer, 'utf-8'); // 根据需要调整编码
+        // 获取网页内容
+        const htmlContent = await response.text();
 
-        // 使用 cheerio 解析 HTML
-        const $ = cheerio.load(htmlContent);
-        const data = []; // 存储爬取的数据
-
-        // 假设你要爬取某些特定元素
-        $('selector').each((index, element) => {
-            const item = $(element).text();
-            data.push(item);
-        });
+        // 手动解析 HTML（示例中简单提取标题）
+        const titleMatches = htmlContent.match(/<title>(.*?)<\/title>/);
+        const title = titleMatches ? titleMatches[1] : '未找到标题';
 
         // 返回 JSON 响应
-        return new Response(JSON.stringify(data), {
+        return new Response(JSON.stringify({ title }), {
             headers: { 'Content-Type': 'application/json' }
         });
 
