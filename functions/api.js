@@ -4,9 +4,12 @@ export async function onRequest(context) {
     try {
         // 使用 fetch 请求网页内容
         const response = await fetch(url);
+        
+        // 检查响应状态
         if (!response.ok) {
             console.error('网络请求失败，状态码:', response.status);
-            return new Response('网络请求失败', { status: 500 });
+            console.error('状态文本:', response.statusText);
+            return new Response('网络请求失败: ' + response.statusText, { status: response.status });
         }
 
         // 获取网页内容
@@ -22,7 +25,9 @@ export async function onRequest(context) {
         });
 
     } catch (error) {
-        console.error('请求失败:', error);
+        // 捕获并记录错误信息
+        console.error('请求失败:', error.message);
+        console.error('堆栈信息:', error.stack);
         return new Response('请求失败: ' + error.message, { status: 500 });
     }
 }
