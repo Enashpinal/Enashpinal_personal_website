@@ -1,7 +1,7 @@
 export const onRequestOptions: PagesFunction = async () => {
     return new Response(null, {
         status: 204,
-        headers: {
+        headers: { 
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
