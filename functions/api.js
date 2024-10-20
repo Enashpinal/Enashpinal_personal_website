@@ -1,17 +1,17 @@
-export const onRequestOptions: PagesFunction = async () => {
+export async function onRequestOptions() {
     return new Response(null, {
         status: 204,
-        headers: { 
+        headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
             'Access-Control-Max-Age': '86400',
         },
     });
-};
+}
 
 // 主请求处理函数
-export const onRequest: PagesFunction = async (context) => {
+export async function onRequest(context) {
     // 处理预检请求
     if (context.request.method === 'OPTIONS') {
         return onRequestOptions();
@@ -45,4 +45,4 @@ export const onRequest: PagesFunction = async (context) => {
     } catch (error) {
         return new Response('请求失败: ' + error.message, { status: 500 });
     }
-};
+}
